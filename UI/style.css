@@ -49,8 +49,7 @@ header #logo h1{
 /*Login Section*/
 
 #login{
-	width: 50%;
-	margin: 50px auto 0 auto;
+	margin: 50px auto auto auto;
 	overflow: hidden;
 	align-content: center;
 	text-align: center;
@@ -64,14 +63,8 @@ header #logo h1{
 	margin: 20px auto 7px auto;
 	border: 2px inset #35072C;
 	padding: 10px;
-}
-#username{
+	min-width: 40%;
 	font-weight: bold;
-	min-width: 70%;
-}
-#password{
-	font-weight: bold;
-	min-width: 70%;
 }
 .button-1{
 	background-color: #35072C;
@@ -87,7 +80,7 @@ header #logo h1{
 }
 footer{
 	padding: 20px;
-	margin-top: 207px;
+	margin-top: 19%;
 	background-color: #35072C;
 	color: #ffffff;
 	text-align: center;

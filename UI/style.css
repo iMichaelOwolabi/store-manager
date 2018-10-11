@@ -71,13 +71,21 @@ header #logo h1{
 	color: #ffffff;
 	padding: 10px;
 	border-radius: 5px;
-	border-color: #ffffff;
+	border-color: #35072C;
 	font-size: 16px;
 	min-width: 150px;
 	font-weight: bold;
 	margin: auto;
 	text-align: center;
 }
+
+/*Dashboard Section*/
+#dashboard{
+	display: block;
+	line-height: 1.5;
+	margin: auto;
+}
+
 footer{
 	padding: 20px;
 	margin-top: 19%;

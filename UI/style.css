@@ -1,0 +1,85 @@
+/*Global section*/
+body{
+	font-family: arial, helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	margin: 0px;
+	padding: 0px;
+	background-color: #f4f4f4;
+}
+ul{
+	margin: 0;
+	padding: 0;
+}
+.container{
+	width: 80%;
+	margin: auto;
+	overflow: hidden;
+}
+
+/*Header Section*/
+header{
+	background-color: #35072C;
+	color: #ffffff;
+	padding-top: 20px;
+	min-height: 70px;
+}
+header a{
+	color: #ffffff;
+	text-decoration: none;
+}
+header li{
+	float: left;
+	display: inline;
+	padding: 0 20px 0 20px;
+}
+header #logo{
+	float: left;
+}
+header #user{
+	float: right;
+	margin-top: 10px;
+	font-weight: bold;
+}
+header #logo h1{
+	margin: 0;
+}
+
+
+/*Login Section*/
+
+#login{
+	width: 50%;
+	margin: 50px auto 0 auto;
+	overflow: hidden;
+	align-content: center;
+	text-align: center;
+}
+#login h2{
+	color: #35072C;
+}
+#login input{
+	display: block;
+	line-height: 1.5;
+	margin: 20px auto 7px auto;
+	border: 2px inset #35072C;
+	padding: 10px;
+}
+#username{
+	font-weight: bold;
+	width: 70%;
+}
+#password{
+	font-weight: bold;
+	width: 70%;
+}
+.button-1{
+	background-color: #35072C;
+	color: #ffffff;
+	padding: 10px;
+	border-radius: 5px;
+	border-color: #ffffff;
+	font-size: 16px;
+	width: 30%;
+	font-weight: bold;
+}

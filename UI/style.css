@@ -81,9 +81,13 @@ header #logo h1{
 
 /*Dashboard Section*/
 #dashboard{
+	color: 
+}
+#dashboard button{
 	display: block;
 	line-height: 1.5;
-	margin: auto;
+	margin-top: 15px;
+	min-width: 30%;
 }
 
 footer{

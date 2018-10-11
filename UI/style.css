@@ -73,7 +73,7 @@ header #logo h1{
 	border-radius: 5px;
 	border-color: #35072C;
 	font-size: 16px;
-	min-width: 150px;
+	width: 150px;
 	font-weight: bold;
 	margin: auto;
 	text-align: center;
@@ -100,6 +100,27 @@ header #logo h1{
 .container #profile{
 	text-align: left;
 }
+
+/*All Products Section*/
+table{
+	border-collapse: collapse;
+	width: 100%
+}
+td{
+    border: 2px solid #35072C;
+    text-align: left;
+    padding: 8px;
+}
+th{
+	font-size: 17px;
+	padding: 8px;
+	font-weight: bold;
+}
+#table-button{
+	border: none;
+}
+
+/*footer section*/
 footer{
 	padding: 20px;
 	margin-top: 50px;

@@ -173,6 +173,7 @@ th{
 }
 #links{
 	margin-top: 40px;
+	padding: 5px;
 }
 
 #links a{
@@ -180,6 +181,7 @@ th{
 	font-weight: bold;
 	color: black;
 	margin-top: 10px;
+	display: inline;
 }
 /*footer section*/
 footer{

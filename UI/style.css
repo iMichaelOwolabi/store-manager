@@ -137,6 +137,18 @@ th{
 #table-button{
 	border: none;
 }
+/*Admin Section*/
+#all-sales select{
+	display: inline;
+	line-height: 1.5;
+	margin: 20px auto 7px auto;
+	border: 2px inset #35072C;
+	padding: 10px;
+	min-width: 42%;
+	font-weight: bold;
+}
+
+
 /*footer section*/
 footer{
 	padding: 20px;

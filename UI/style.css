@@ -66,6 +66,15 @@ header #logo h1{
 	min-width: 40%;
 	font-weight: bold;
 }
+#login select{
+	display: block;
+	line-height: 1.5;
+	margin: 20px auto 7px auto;
+	border: 2px inset #35072C;
+	padding: 10px;
+	min-width: 42%;
+	font-weight: bold;
+}
 .button-1{
 	background-color: #35072C;
 	color: #ffffff;

@@ -16,6 +16,24 @@ ul{
 	margin: auto;
 	overflow: hidden;
 }
+input{
+	display: block;
+	line-height: 1.5;
+	margin: 20px auto 7px auto;
+	border: 2px inset #35072C;
+	padding: 10px;
+	min-width: 40%;
+	font-weight: bold;
+}
+select{
+	display: block;
+	line-height: 1.5;
+	margin: 20px auto 7px auto;
+	border: 2px inset #35072C;
+	padding: 10px;
+	min-width: 42%;
+	font-weight: bold;
+}
 
 /*Header Section*/
 header{
@@ -44,8 +62,6 @@ header #user{
 header #logo h1{
 	margin: 0;
 }
-
-
 /*Login Section*/
 
 #login{
@@ -57,24 +73,7 @@ header #logo h1{
 #login h2{
 	color: #35072C;
 }
-#login input{
-	display: block;
-	line-height: 1.5;
-	margin: 20px auto 7px auto;
-	border: 2px inset #35072C;
-	padding: 10px;
-	min-width: 40%;
-	font-weight: bold;
-}
-#login select{
-	display: block;
-	line-height: 1.5;
-	margin: 20px auto 7px auto;
-	border: 2px inset #35072C;
-	padding: 10px;
-	min-width: 42%;
-	font-weight: bold;
-}
+
 .button-1{
 	background-color: #35072C;
 	color: #ffffff;
@@ -85,6 +84,23 @@ header #logo h1{
 	width: 150px;
 	font-weight: bold;
 	margin: auto;
+	text-align: center;
+}
+
+/*Create Account section*/
+
+#account{
+	margin: 50px auto auto auto;
+	overflow: hidden;
+	align-content: center;
+	text-align: center;
+}
+
+/*all-product*/
+#all-product{
+	margin: 50px auto auto auto;
+	overflow: hidden;
+	align-content: center;
 	text-align: center;
 }
 
@@ -105,6 +121,10 @@ header #logo h1{
 	line-height: 1.5;
 	margin-top: 15px;
 	min-width: 30%;
+}
+#dashboard a{
+	text-decoration: none;
+	color: #ffffff;
 }
 .container #profile{
 	text-align: left;
@@ -148,7 +168,19 @@ th{
 	font-weight: bold;
 }
 
+#shopping input{
+	padding: 5px;
+}
+#links{
+	margin-top: 40px;
+}
 
+#links a{
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+	margin-top: 10px;
+}
 /*footer section*/
 footer{
 	padding: 20px;

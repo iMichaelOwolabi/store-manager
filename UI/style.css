@@ -125,6 +125,15 @@ th{
 	padding: 8px;
 	font-weight: bold;
 }
+#search{
+	display: inline-block;
+	line-height: 1.5;
+	margin: 20px auto 7px auto;
+	border: 2px inset #35072C;
+	padding: 10px;
+	min-width: 40%;
+	font-weight: bold;
+}
 #table-button{
 	border: none;
 }

@@ -7,37 +7,45 @@
 	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
+	
 	<header>
 		<div class="container">
 			<div id="logo">
 				<h1><a href="#">Store Manager</a></h1>
 			</div>
-			<div id="user">
+			<nav>
+			
 				<ul>
-					<li>Username</li>
-					<li><a href="#profile">View Profile</a></li>
+						<li><a href="dashboard.html">Dashboard</a></li>
+					<li><a href="products.html">Products</a></li>
+					<li><a href="sales.html">Sales</a></li>
+					<li><a href="attendants.html">Attendants</a></li>
 					<li><a href="index.html">Logout</a></li>
 				</ul>
-			</div>
+				<input type="text" placeholder="Search..">
+
+		</nav>
 		</div>
 	</header>
 
 	<section id="dashboard">
 		<div class="container">
-			<h2>Welcome Username, what would you like to do today?</h2>
-			<a href="products.html"><button class="button-1" type="submit">View Products</button></a>
-			<a href="view-sales.html"><button class="button-1" type="submit">View Sales Record</button></a>
-			<a href="products.html"><button class="button-1" type="submit">Create Sales Record</button></a>
+			<div class = "Profile">
+				<img src="./img/user.png" class="user">
+			</div>
+			<p>Account Overview</p>
+			<div class="boxes">
+				<div class="box">
+					<h3>The total number of sales records:</h3>
+				</div>
 
-			<div id="profile">
-				<p>Account Overview</p>
-				<hr>
-				<h3>Below are your activities so far:</h3>
-				<ul>
-					<li>The total number of sales record: </li>
-					<li>The total number of products sold: </li>
-					<li>Overall amount of goods sold: </li>
-				</ul>
+				<div class="box">
+					<h3>The total number of sales record:</h3>
+				</div>
+
+				<div class="box">
+					<h3>The total number of sales record:</h3>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -45,20 +53,31 @@
 	<section id="admin">
 		<div id="dashboard">
 			<div class="container">
-				<h2>Admin Section</h2>
-				<a href="create-account.html"><button class="button-1" type="submit">Create Account</button></a>
-				<a href="create-product.html"><button class="button-1" type="submit">Create Product</button></a>
-				<a href="all-products.html"><button class="button-1" type="submit">View Products</button></a>
-				<a href="attendants.html"><button class="button-1" type="submit">View Attendants</button></a>
-				<a href="all-sales.html"><button class="button-1" type="submit">All Sales Record</button></a>
+
+				<div class = "Profile">
+					<img src="./img/user.png" class="user">
+				</div>
+				<p>Store Activity</p>
+				<div class="boxes">
+					<div class="box">
+						<h3>Total Sales:</h3>
+					</div>
+			
+					<div class="box">
+						<h3>Best Performing Product:</h3>
+					</div>
+			
+					<div class="box">
+						<h3>Most active store attendant:</h3>
+					</div>
+				</div>
+
 			</div>
 		</div>
-		
 	</section>
 
 	<footer>
-		<p>Store Manager, copyright &copy; 2018</p>
+			<p>Store Manager, copyright &copy; 2018</p>
 	</footer>
-	
 </body>
 </html>

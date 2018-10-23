@@ -6,6 +6,7 @@ body{
 	margin: 0px;
 	padding: 0px;
 	background-color: #f4f4f4;
+	min-height: 100%
 }
 ul{
 	margin: 0;
@@ -44,6 +45,14 @@ header{
 	color: #ffffff;
 	padding-top: 20px;
 	min-height: 70px;
+	position: fixed;
+	width: 100%;
+	z-index: 10000;
+}
+header input{
+	width: 100%;
+	border: 1px solid #ccc;
+	float: left;
 }
 header a{
 	color: #ffffff;
@@ -57,7 +66,7 @@ header li{
 header #logo{
 	float: left;
 }
-header #user{
+header nav{
 	float: right;
 	margin-top: 10px;
 	font-weight: bold;
@@ -115,9 +124,32 @@ header #logo h1{
 	text-align: center;
 }
 #dashboard p{
-	text-align: left;
-	font-size: 20px;
+	text-align: center;
+	font-size: 25px;
 	font-weight: bold;
+	color: #051547;
+	width: 100%;
+}
+#dashboard .Profile{
+	width: 100%;
+}
+.user{
+	width: 100px;
+	margin: 15px 0px 0px 0px;
+}
+#dashboard .boxes{
+	margin-top: 20px;
+}
+#dashboard .box{
+	padding: 10px;
+	background-color: #332C0D;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 16px;
+	width: 30%;
+	float: left;
+	margin-right: 10px;
+	overflow-wrap: break-word;
 }
 #dashboard button{
 	display: block;
@@ -128,9 +160,6 @@ header #logo h1{
 #dashboard a{
 	text-decoration: none;
 	color: #ffffff;
-}
-.container #profile{
-	text-align: left;
 }
 
 /*All Products Section*/
@@ -184,7 +213,7 @@ th{
 	padding: 5px;
 	float: left;
 	display: inline;
-	padding: 0 20px 0 20px;
+	padding: 0 20px;
 }
 
 #links a{
@@ -192,11 +221,19 @@ th{
 	font-weight: bold;
 	color: black;
 }
+a:hover{
+	color: darkgoldenrod;
+}
+a:active{
+	color: rgb(148, 108, 5);
+}
 /*footer section*/
 footer{
 	padding: 20px;
-	margin-top: 50px;
 	background-color: #35072C;
 	color: #ffffff;
 	text-align: center;
+	position: relative;
+	bottom:0;
+	margin-top: 40px;
 }

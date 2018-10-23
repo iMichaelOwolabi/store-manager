@@ -48,6 +48,7 @@ header{
 	position: fixed;
 	width: 100%;
 	z-index: 10000;
+	top: 0;
 }
 header input{
 	width: 100%;
@@ -73,6 +74,10 @@ header nav{
 }
 header #logo h1{
 	margin: 0;
+}
+
+#attendant{
+	margin-top: 125px;
 }
 /*Login Section*/
 
@@ -135,7 +140,7 @@ header #logo h1{
 }
 .user{
 	width: 100px;
-	margin: 15px 0px 0px 0px;
+	margin: 20px 0px 0px 0px;
 }
 #dashboard .boxes{
 	margin-top: 20px;

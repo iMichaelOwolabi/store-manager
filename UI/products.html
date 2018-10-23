@@ -8,58 +8,90 @@
 </head>
 <body>
 	<header>
-		<div class="container">
-			<div id="logo">
-				<h1><a href="dashboard.html">Store Manager</a></h1>
-			</div>
-			<div id="user">
-				<ul>
-					<li>Username</li>
-					<li><a href="dashboard.html#Profile">View Profile</a></li>
-					<li><a href="index.html">Logout</a></li>
-				</ul>
-			</div>
+			<div class="container">
+				<div id="logo">
+					<h1><a href="#">Store Manager</a></h1>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="dashboard.html">Dashboard</a></li>
+						<li><a href="products.html">Products</a></li>
+						<li><a href="sales.html">Sales</a></li>
+						<li><a href="attendants.html">Attendants</a></li>
+						<li><a href="index.html">Logout</a></li>
+					</ul>
+					<input type="text" placeholder="Search...">
+			</nav>
 		</div>
 	</header>
 
 	<section id="all-products">
 		<div class="container">
-			<h2>Below is the list of all available products in the store</h2>
-			<p>To create sales record for any individual product kindly click on <cite>Add to Cart</cite></p>
-			<p>
-				<form>
-					<input type="search" name="search" id="search" placeholder="Search Product">
-					<button class="button-1" id="search-button" type="submit">Search Product</button>
-				</form>
-			</p>
-			<table>
-				<tr>
-					<th>Product Id</th>
-					<th>Product Name</th>
-					<th>Price</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Dummy Product</td>
-					<td>$200</td>
-					<td id="table-button"><a href="products-details.html"><button class="button-1" type="submit">Details</button></a></td>
-					<td id="table-button"><a href="shopping-cart.html"><button class="button-1" type="submit">Add to Cart</button></a></td>
-				</tr>
-			</table>
+			<h2>Shop to your satisfaction</h2>
+
+			<div class="boxes">
+				<div class="box">
+					<a href="products-details.html">
+						<img src="./img/bow-tie.png">
+						<h3>Vintage Bow-Tie</h3>
+						<p>A super classic vintage bow tie for men</p>
+						<button class = "cart-btn">Add to Cart</button>
+						<button class = "details-btn">Details</button>
+					</a>
+				</div>
+				<div class="box">
+					<a href="products-details.html">
+						<img src="./img/short-susp.png">
+						<h3>Cool Summer Short</h3>
+						<p>A super classic vintage bow tie for men</p>
+						<button class = "cart-btn">Add to Cart</button>
+						<button class = "details-btn">Details</button>
+					</a>
+				</div>
+
+				<div class="box">
+					<a href="products-details.html">
+						<img src="./img/men-boot.png">
+						<h3>Men's Mountain Boot</h3>
+						<p>A super classic vintage bow tie for men</p>
+						<button class = "cart-btn">Add to Cart</button>
+						<button class = "details-btn">Details</button>
+					</a>
+				</div>
+
+				<div class="box">
+						<a href="products-details.html">
+							<img src="./img/women-ankle-shoe.png">
+							<h3>Women Leather Shoe</h3>
+							<p>A super classic vintage bow tie for men</p>
+							<button class = "cart-btn">Add to Cart</button>
+							<button class = "details-btn">Details</button>
+						</a>	
+					</div>
+					<div class="box">
+						<a href="products-details.html">
+							<img src="./img/uk-bow-tie.png">
+							<h3>Uk Vintage Bow-Tie</h3>
+							<p>A super classic vintage bow tie for men</p>
+							<button class = "cart-btn">Add to Cart</button>
+							<button class = "details-btn">Details</button>
+						</a>
+					</div>
+	
+					<div class="box">
+						<a href="products-details.html">
+							<img src="./img/black-belt.png">
+							<h3>Italian Leather Belt</h3>
+							<p>A super classic vintage bow tie for men</p>
+							<button class = "cart-btn">Add to Cart</button>
+							<button class = "details-btn">Details</button>
+						</a>
+					</div>
+			</div>
+			
 		</div>
 	</section>
 
-	<section id="links">
-		<div class="container">
-			<p>Useful Links</p>
-			<ul>
-				<li><a href="dashboard.html">Dashboard</a></li>
-				<li><a href="products.html">Products</a></li>
-				<li><a href="shopping-cart.html">Shopping Cart</a></li>
-				<li><a href="view-sales.html">View Sales</a></li>
-			</ul>
-		</div>
-	</section>
 
 	<footer>
 		<p>Store Manager, copyright &copy; 2018</p>

@@ -3,32 +3,54 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Product Details</title>
+	<title>Store Manager: Products</title>
 	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
 	<header>
-			<div class="container">
-				<div id="logo">
-					<h1><a href="#">Store Manager</a></h1>
-				</div>
-				<nav>
-					<ul>
-						<li><a href="dashboard.html">Dashboard</a></li>
-						<li><a href="products.html">Products</a></li>
-						<li><a href="sales.html">Sales</a></li>
-						<li><a href="attendants.html">Attendants</a></li>
-						<li><a href="index.html">Logout</a></li>
-					</ul>
-					<input type="text" placeholder="Search...">
-			</nav>
-		</div>
-	</header>
+		<div class="container">
+			<div id="logo">
+				<h1><a href="#">Store Manager</a></h1>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="dashboard.html">Dashboard</a></li>
+					<li><a href="products.html">Products</a></li>
+					<li><a href="sales.html">Sales</a></li>
+					<li><a href="attendants.html">Attendants</a></li>
+					<li><a href="index.html">Logout</a></li>
+				</ul>
+				<input type="text" placeholder="Search...">
+		</nav>
+	</div>
+</header>
 
-	<section id="all-products">
+	<section id="product-details">
 		<div class="container">
 			
-		
+			<div class="product-details">
+				<img src="./img/men-boot.png" alt="Product Image">
+				<div class="details">
+					<p>#1</p>
+					<p><h1>Men's Mountain Boot</h1></p>
+
+					<div class="attendant">
+						<p>Qty: <input type="number" value="1"></p>
+						<p>Price: N54,0000</p>
+						<p>Available Quantity: 718</p>
+						<p>Status: Available</p>
+						<button class = "cart-btn">Add to Cart</button>
+					</div>
+					<div class="admin">
+						<p>Price: N54,0000</p>
+						<p>Available Quantity: 718</p>
+						<p>Status: Available</p>
+						<button class = "modify-btn">Modify</button>
+						<button class = "delete-btn">Delete</button>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</section>
 

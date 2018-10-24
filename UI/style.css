@@ -38,6 +38,32 @@ select{
 	min-width: 42%;
 	font-weight: bold;
 }
+.attendant{
+	visibility: visible;
+	display: block;
+}
+.admin{
+	visibility: visible;
+	display: none;
+}
+.modify-btn{
+	background-color: #8B4513;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 10px;
+	min-width: 200px;
+	border-radius: 20px;
+	font-size: 16px;
+}
+.delete-btn{
+	background-color: #8B4513;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 10px;
+	min-width: 200px;
+	border-radius: 20px;
+	font-size: 16px;
+}
 
 /*Header Section*/
 header{
@@ -157,7 +183,6 @@ header #logo h1{
 	margin: 50px auto auto auto;
 	overflow: hidden;
 	align-content: center;
-	margin-top: 125px;
 }
 #all-products h2{
 	margin-top: 80px;
@@ -180,7 +205,7 @@ header #logo h1{
 	min-height: 180px;
 	/*border: 1px solid;*/
 }
-#all-products .cart-btn{
+.cart-btn{
 	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
@@ -208,6 +233,34 @@ header #logo h1{
 }
 .box a:active{
 	background-color: inherit;
+}
+
+/*Produc Details section*/
+#product-details{
+	margin-top: 170px;
+}
+.product-details{
+	color: #35072C;
+}
+.product-details img{
+	min-width: 30%;
+	max-width: 40%;
+	float: left;
+}
+.product-details input{
+	width: px;
+	margin-left: 0;
+	height: 10px;
+}
+#product-details .product-details .details{
+float: left;
+margin-left: 90px;
+}
+.product-details p{
+	font-size: 16px;
+}
+.product-details h1{
+	font-size: 30px;
 }
 
 #dashboard button{

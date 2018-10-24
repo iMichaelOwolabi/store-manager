@@ -1,5 +1,5 @@
 /*Global section*/
-body{
+body {
 	font-family: arial, helvetica, sans-serif;
 	font-size: 14px;
 	line-height: 1.5;
@@ -8,19 +8,19 @@ body{
 	background-color: #f4f4f4;
 	min-height: 100%
 }
-ul{
+ul {
 	margin: 0;
 	padding: 0;
 }
-.container{
+.container {
 	width: 80%;
 	margin: auto;
 	overflow: hidden;
 }
-.left{
+.left {
 	float: left;
 }
-input{
+input {
 	display: block;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
@@ -29,7 +29,7 @@ input{
 	min-width: 40%;
 	font-weight: bold;
 }
-select{
+select {
 	display: block;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
@@ -38,15 +38,15 @@ select{
 	min-width: 42%;
 	font-weight: bold;
 }
-.attendant{
+.attendant {
 	visibility: visible;
 	display: block;
 }
-.admin{
+.admin {
 	visibility: visible;
 	display: none;
 }
-.modify-btn{
+.modify-btn {
 	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
@@ -55,7 +55,7 @@ select{
 	border-radius: 20px;
 	font-size: 16px;
 }
-.delete-btn{
+.delete-btn {
 	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
@@ -66,7 +66,7 @@ select{
 }
 
 /*Header Section*/
-header{
+header {
 	background-color: #35072C;
 	color: #ffffff;
 	padding-top: 20px;
@@ -76,48 +76,48 @@ header{
 	z-index: 10000;
 	top: 0;
 }
-header input{
+header input {
 	width: 100%;
 	border: 1px solid #ccc;
 	float: left;
 }
-header a{
+header a {
 	color: #ffffff;
 	text-decoration: none;
 }
-header li{
+header li {
 	float: left;
 	display: inline;
 	padding: 0 20px 0 20px;
 }
-header #logo{
+header #logo {
 	float: left;
 }
-header nav{
+header nav {
 	float: right;
 	margin-top: 10px;
 	font-weight: bold;
 }
-header #logo h1{
+header #logo h1 {
 	margin: 0;
 }
 
-#attendant{
+#attendant {
 	margin-top: 200px;
 }
 /*Login Section*/
 
-#login{
+#login {
 	margin: 50px auto auto auto;
 	overflow: hidden;
 	align-content: center;
 	text-align: center;
 }
-#login h2{
+#login h2 {
 	color: #35072C;
 }
 
-.button-1{
+.button-1 { 
 	background-color: #35072C;
 	color: #ffffff;
 	padding: 10px;
@@ -132,7 +132,7 @@ header #logo h1{
 
 /*Create Account section*/
 
-#account{
+#account {
 	margin: 50px auto auto auto;
 	overflow: hidden;
 	align-content: center;
@@ -140,13 +140,13 @@ header #logo h1{
 }
 
 /*Dashboard Section*/
-#dashboard{
+#dashboard {
 	text-align: left;
 }
-#dashboard h2{
+#dashboard h2 {
 	text-align: center;
 }
-#dashboard p{
+#dashboard p {
 	text-align: center;
 	font-size: 25px;
 	font-weight: bold;
@@ -156,14 +156,14 @@ header #logo h1{
 #dashboard .Profile{
 	width: 100%;
 }
-.user{
+.user {
 	width: 100px;
 	margin: 20px 0px 0px 0px;
 }
-.boxes{
+.boxes {
 	margin-top: 20px;
 }
-.box{
+.box {
 	padding: 10px;
 	background-color: #332C0D;
 	color: #ffffff;
@@ -179,33 +179,33 @@ header #logo h1{
 }
 
 /*All Products Section*/
-#all-products{
+#all-products {
 	margin: 50px auto auto auto;
 	overflow: hidden;
 	align-content: center;
 }
-#all-products h2{
+#all-products h2 {
 	margin-top: 80px;
 }
-#all-products .boxes{
+#all-products .boxes {
 	text-align: center;
 }
-#all-products .boxes p{
+#all-products .boxes p {
 	font-size: 12px;
 	font-weight: normal;
 }
-#all-products .box img{
+#all-products .box img {
 	width: 100px;
 	height: 80px;
 }
 
-#all-products .box{
+#all-products .box {
 	background-color: #f4f4f4;
 	color: #35072C;
 	min-height: 180px;
 	/*border: 1px solid;*/
 }
-.cart-btn{
+.cart-btn {
 	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
@@ -214,7 +214,7 @@ header #logo h1{
 	border-radius: 20px;
 	font-size: 16px;
 }
-#all-products .details-btn{
+#all-products .details-btn {
 	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
@@ -224,60 +224,86 @@ header #logo h1{
 	font-size: 16px;
 	visibility: hidden;
 }
-.box a{
+.box a {
 	color: inherit;
 	text-decoration: none;
 }
-.box a:hover{
+.box a:hover {
 	color: inherit;
 }
-.box a:active{
+.box a:active {
 	background-color: inherit;
 }
 
 /*Produc Details section*/
-#product-details{
+#product-details {
 	margin-top: 170px;
 }
-.product-details{
+.product-details {
 	color: #35072C;
 }
-.product-details img{
+.product-details img {
 	min-width: 30%;
 	max-width: 40%;
 	float: left;
 }
-.product-details input{
-	width: px;
+.product-details input {
+	width: 5px;
 	margin-left: 0;
 	height: 10px;
 }
-#product-details .product-details .details{
+#product-details .product-details .details {
 float: left;
 margin-left: 90px;
 }
-.product-details p{
+.product-details p {
 	font-size: 16px;
 }
-.product-details h1{
+.product-details h1 {
 	font-size: 30px;
 }
 
-#dashboard button{
+/*Sopping Cart Section*/
+#cart {
+	margin-top: 170px;
+}
+.product{
+	color: #35072C;
+}
+.product img {
+	min-width: 10%;
+	max-width: 20%;
+	min-height: 80px;
+	max-height: 80px;
+	float: left;
+}
+#cart .product .details {
+	margin-left: 90px;
+	font-size: 12px;
+}
+.product h1 {
+	font-size: 10px;
+}
+#cart .product .details p input {
+	width: 2px;
+	margin-left: 0;
+}
+
+#dashboard button {
 	display: block;
 	line-height: 1.5;
 	margin-top: 15px;
 	min-width: 30%;
 }
-#dashboard a{
+#dashboard a {
 	text-decoration: none;
 	color: #ffffff;
 }
-table{
+table {
 	border-collapse: collapse;
 	width: 100%
 }
-tr{
+tr {
 	margin: auto;
 }
 td{
@@ -285,12 +311,12 @@ td{
     text-align: left;
     padding: 8px;
 }
-th{
+th {
 	font-size: 17px;
 	padding: 8px;
 	font-weight: bold;
 }
-#search{
+#search {
 	display: inline-block;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
@@ -299,11 +325,11 @@ th{
 	min-width: 40%;
 	font-weight: bold;
 }
-#table-button{
+#table-button {
 	border: none;
 }
 /*Admin Section*/
-#all-sales select{
+#all-sales select {
 	display: inline;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
@@ -313,40 +339,36 @@ th{
 	font-weight: bold;
 }
 
-#shopping input{
-	padding: 5px;
-}
 #links {
 	margin-top: 40px;
 }
-#links li{
+#links li {
 	padding: 5px;
 	float: left;
 	display: inline;
 	padding: 0 20px;
 }
 
-#links a{
+#links a {
 	text-decoration: none;
 	font-weight: bold;
 	color: black;
 }
-a:hover{
+a:hover {
 	color: #B8860B;
 }
-a:active{
+a:active {
 	color: #B8860B;
 	background-color: #ffffff;
 	padding: 5px;
 }
 /*footer section*/
-footer{
+footer {
 	padding: 20px;
 	background-color: #35072C;
 	color: #ffffff;
 	text-align: center;
 	position: relative;
 	bottom:0;
-	margin-top: 70px;
-	
+	margin-top: 100px;
 }

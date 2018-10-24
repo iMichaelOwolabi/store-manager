@@ -248,7 +248,11 @@ header #logo h1 {
 }
 .product-details input {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	width: px;
+=======
+	width: 50px;
+>>>>>>> Stashed changes
 =======
 	width: 50px;
 >>>>>>> Stashed changes
@@ -284,10 +288,17 @@ margin-left: 90px;
 }
 #cart .product .details {
 	font-size: 14px;
+<<<<<<< Updated upstream
 }
 #cart h1{
 text-align: center;
 }
+=======
+}
+#cart h1{
+text-align: center;
+}
+>>>>>>> Stashed changes
 #cart .product h1 {
 	font-size: 100%;
 	text-align: left;

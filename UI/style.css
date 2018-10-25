@@ -247,7 +247,7 @@ header #logo h1 {
 	float: left;
 }
 .product-details input {
-	width: 50px;
+	width: 5px;
 	margin-left: 0;
 	height: 10px;
 }
@@ -307,6 +307,23 @@ text-align: center;
 	font-size: 16px;
 }
 
+	min-width: 10%;
+	max-width: 20%;
+	min-height: 80px;
+	max-height: 80px;
+	float: left;
+}
+#cart .product .details {
+	margin-left: 90px;
+	font-size: 12px;
+}
+.product h1 {
+	font-size: 10px;
+}
+#cart .product .details p input {
+	width: 2px;
+	margin-left: 0;
+}
 #dashboard button {
 	display: block;
 	line-height: 1.5;

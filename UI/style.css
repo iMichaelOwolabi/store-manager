@@ -473,6 +473,18 @@ a:active {
 	margin-top: 15px;
 	text-align: center;
 }
+#admin .view-sales {
+	background-color: #8B4513;
+	color: #ffffff;
+	padding: 10px;
+	border-radius: 5px;
+	border-color: #35072C;
+	font-size: 16px;
+	min-width 10%;
+	font-weight: bold;
+	margin-top: 15px;
+	text-align: center;
+}
 
 
 /*footer section*/

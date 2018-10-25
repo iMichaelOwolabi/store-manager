@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Store Manager: Store Sales Record</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+		<header>
+			<div class="container">
+				<div id="logo">
+					<h1><a href="#">Store Manager</a></h1>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="dashboard.html">Dashboard</a></li>
+						<li><a href="products.html">Products</a></li>
+						<li><a href="sales.html">Sales</a></li>
+						<li><a href="attendants.html">Attendants</a></li>
+						<li><a href="index.html">Logout</a></li>
+					</ul>
+					<input type="text" placeholder="Search...">
+				</nav>
+			</div>
+		</header>
+
+		<div id="atterndant">
+			<section id="view-sales">
+				<div class="container">
+					<h2>Below is your sales record</h2>
+					<table>
+						<tr>
+							<th>Product Id</th>
+							<th>Product Name</th>
+							<th>Quantity</th>
+							<th>Amount</th>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>Dummy Product</td>
+							<td>2</td>
+							<td>$400</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Dummy Product</td>
+							<td>12</td>
+							<td>$7100</td>
+						</tr>
+					</table>
+				</div>
+			</section>
+		</div>
+
+			<div id="admin">
+			<section id="all-sales">
+			<div class="container">
+				<h2>Below is the store sales record</h2>
+				<p>You can also view sales record by attendant</p>
+				<p>
+					<select class="category">
+						<option>Username</option>
+					</select>
+					<button class="view-sales" type="submit">View Sales</button>
+				</p>
+				<table>
+					<tr>
+						<th>Order Id</th>
+						<th>Product Name</th>
+						<th>Quantity</th>
+						<th>Amount</th>
+						<th>Attendant</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>Dummy Product</td>
+						<td>2</td>
+						<td>$400</td>
+						<td>Attendant Username</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Dummy Product</td>
+						<td>51</td>
+						<td>$4000</td>
+						<td>Attendant Username</td>
+					</tr>
+				</table>
+			</div>
+		</section>
+	</div>
+
+
+	<footer>
+		<p>Store Manager, copyright &copy; 2018</p>
+	</footer>
+	
+</body>
+</html>

@@ -117,7 +117,7 @@ header #logo h1 {
 	color: #35072C;
 }
 
-.button-1 { 
+.button-1 {
 	background-color: #35072C;
 	color: #ffffff;
 	padding: 10px;
@@ -153,7 +153,7 @@ header #logo h1 {
 	color: #051547;
 	width: 100%;
 }
-#dashboard .Profile{
+#dashboard .Profile {
 	width: 100%;
 }
 .user {
@@ -288,7 +288,6 @@ margin-left: 90px;
 	width: 2px;
 	margin-left: 0;
 }
-
 #dashboard button {
 	display: block;
 	line-height: 1.5;
@@ -306,7 +305,7 @@ table {
 tr {
 	margin: auto;
 }
-td{
+td {
     border: 2px solid #35072C;
     text-align: left;
     padding: 8px;
@@ -339,6 +338,9 @@ th {
 	font-weight: bold;
 }
 
+#shopping input {
+	padding: 5px;
+}
 #links {
 	margin-top: 40px;
 }

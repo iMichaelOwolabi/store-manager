@@ -439,6 +439,41 @@ a:active {
 .create-box {
 	margin: 40px;
 }
+#create-product input {
+	display: block;
+	line-height: 1.5;
+	margin: 20px auto 7px auto;
+	border: 2px inset #35072C;
+	padding: 10px;
+	font-weight: bold;
+	min-width: 30%;
+}
+#create-product {
+	text-align: center;
+	margin-top: 20px;
+}
+#create-product select {
+	display: block;
+	line-height: 1.5;
+	margin: 20px auto 7px auto;
+	border: 2px inset #35072C;
+	padding: 10px;
+	font-weight: bold;
+	min-width: 32%;
+}
+#create-product button {
+	background-color: #8B4513;
+	color: #ffffff;
+	padding: 10px;
+	border-radius: 5px;
+	border-color: #35072C;
+	font-size: 16px;
+	min-width 10%;
+	font-weight: bold;
+	margin-top: 15px;
+	text-align: center;
+}
+
 
 /*footer section*/
 footer {

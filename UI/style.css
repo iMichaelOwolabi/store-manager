@@ -151,6 +151,21 @@ header #logo h1 {
 	align-content: center;
 	text-align: center;
 }
+#account input {
+	min-width: 30%;
+}
+.create-acc-btn { 
+	background-color: #8B4513;
+	color: #ffffff;
+	padding: 10px;
+	border-radius: 5px;
+	border-color: #35072C;
+	font-size: 16px;
+	min-width 10%;
+	font-weight: bold;
+	margin-top: 15px;
+	text-align: center;
+}
 
 /*Dashboard Section*/
 #dashboard {
@@ -411,7 +426,7 @@ a:active {
 	background-color: #ffffff;
 	padding: 5px;
 }
-.create-attendant-btn{
+.create-attendant-btn {
 	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
@@ -420,6 +435,9 @@ a:active {
 	border-radius: 20px;
 	font-size: 16px;	
 	margin-bottom: 20px;
+}
+.create-box {
+	margin: 40px;
 }
 
 /*footer section*/

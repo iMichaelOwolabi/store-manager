@@ -10,41 +10,36 @@
 	<header>
 		<div class="container">
 			<div id="logo">
-				<h1><a href="dashboard.html">Store Manager</a></h1>
+				<h1><a href="#">Store Manager</a></h1>
 			</div>
-			<div id="user">
+			<nav>
 				<ul>
-					<li>Admin</li>
+					<li><a href="dashboard.html">Dashboard</a></li>
+					<li><a href="products.html">Products</a></li>
+					<li><a href="sales.html">Sales</a></li>
+					<li><a href="attendants.html">Attendants</a></li>
 					<li><a href="index.html">Logout</a></li>
 				</ul>
-			</div>
+				<input type="text" placeholder="Search...">
+			</nav>
 		</div>
 	</header>
 
 	<section id="account">
 		<div class="container">
-			<h2>Fill the form below and click the <cite>Create Account</cite> button below the form to create a new sales attendant account</h2>
-				<form action="#">
-					<input type="text" name="username" id="username" placeholder="Enter Username" required>
-					<input type="password" name="password" id="password" placeholder="Enter Password" required>
-					<input type="password" name="re-password" id="re-password" placeholder="Confirm Password" required>
-					<button class="button-1" type="submit">Create Account</button>
-				</form>
+			<div class="create-box">
+				<h2>New Attendant Account</h2>
+					<form action="#">
+						<input type="text" name="username" id="username" placeholder="Enter Username" required>
+						<input type="password" name="password" id="password" placeholder="Enter Password" required>
+						<input type="password" name="re-password" id="re-password" placeholder="Confirm Password" required>
+						<a href="attendants.html"><button class="create-acc-btn" type="submit">Create Account</button></a>
+					</form>
+			</div>
 		</div>
 	</section>
 
-	<section id="links">
-		<div class="container">
-			<p>Useful Links</p>
-			<ul>
-				<li><a href="create-account.html">Create Account</a></li>
-				<li><a href="create-product.html">Create Product</a></li>
-				<li><a href="all-products.html">Products</a></li>
-				<li><a href="all-sales.html">All Sales Record</a></li>
-				<li><a href="attendants.html">Attendants</a></li>
-			</ul>
-		</div>
-	</section>
+	
 
 	<footer>
 		<p>Store Manager, copyright &copy; 2018</p>

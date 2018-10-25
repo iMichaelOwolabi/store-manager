@@ -132,6 +132,17 @@ header #logo h1 {
 	text-align: center;
 }
 
+.attendant-btn { 
+	background-color: #35072C;
+	color: #ffffff;
+	padding: 3px;
+	border-radius: 5px;
+	border-color: #35072C;
+	font-size: 12px;
+	min-width: 30%;
+	text-align: center;
+	margin: auto;
+}
 /*Create Account section*/
 
 #account {
@@ -336,15 +347,17 @@ text-align: center;
 }
 table {
 	border-collapse: collapse;
-	width: 100%
+	width: 100%;
+	text-align: center;
 }
 tr {
 	margin: auto;
 }
 td {
-    border: 2px solid #35072C;
-    text-align: left;
-    padding: 8px;
+    border: 1px solid #35072C;
+    text-align: center;;
+		padding: 8px;
+		margin: auto;
 }
 th {
 	font-size: 17px;
@@ -361,7 +374,8 @@ th {
 	font-weight: bold;
 }
 #table-button {
-	border: none;
+	padding: 2px;
+	width: 5%;
 }
 /*Admin Section*/
 #all-sales select {
@@ -397,6 +411,17 @@ a:active {
 	background-color: #ffffff;
 	padding: 5px;
 }
+.create-attendant-btn{
+	background-color: #8B4513;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 10px;
+	min-width: 10%;
+	border-radius: 20px;
+	font-size: 16px;	
+	margin-bottom: 20px;
+}
+
 /*footer section*/
 footer {
 	padding: 20px;

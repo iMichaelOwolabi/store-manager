@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha api/test --require @babel/register",
     "devstart": "babel-node api/src/app.js",
-    "build": "babel api/src/app.js --out-dir /api/dist",
+    "build": "babel-node api/src/app.js --out-dir /api/dist",
     "serve": "node api/dist/app.js",
     "start": "npm run build && npm run serve"
   },

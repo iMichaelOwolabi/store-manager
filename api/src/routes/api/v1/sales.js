@@ -1,18 +1,18 @@
-const express = require('express');
+import express from 'express';
+
+import salesController from '../../../controller/sales';
 
 const router = express.Router();
-
-const salesController = require('../../../controller/sales');
 
 const { getAllSales, getOneSales, postSales } = salesController;
 
 // Get all sales record
 router.get('/', getAllSales);
 
-//Getting a apecific sales record
+// Getting a specific sales record
 router.get('/:id', getOneSales);
 
- //Creating a new sales record
+// Creating a new sales record
  router.post('/', postSales);
 
-module.exports = router;
+export default(router);

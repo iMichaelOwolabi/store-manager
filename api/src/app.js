@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 
-const port = process.env.PORT || (process.argv[2] || 3000);
+app.set('port', (process.env.PORT || 3000));
 
-if (!module.parent) { app.listen(port); }
-
-console.log('The app is running successfully on port:' + port);
+app.listen(app.get('port'), () => {
+  console.log('The app is running successfully');
+});
 
 export default(app);

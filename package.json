@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --require @babel/register",
-    "start": "babel-node /apisrc/app.js",
-    "build": "babel /api/src --out-dir /api/dist",
+    "start": "babel-node api/src/app.js",
+    "build": "babel api/src --out-dir /api/dist",
     "serve": "node api/dist/app.js"
   },
   "author": "",

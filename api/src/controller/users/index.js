@@ -1,4 +1,4 @@
-const inMemoryUser = require('../../model/users');
+import inMemoryUser from '../../model/users';
 
 // get all user
 const getUsers = (req, res) => {
@@ -9,7 +9,7 @@ const getUsers = (req, res) => {
 const getOneUser = (req, res) => {
 	const { id } = req.params;
 
-	const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id))[0];
+	const user = inMemoryUser.filter( theUser => theUser.id === parseInt(id) )[0];
 
 	if(!user){
     res.status(404).json('The specified user does not exist on this platform');
@@ -23,13 +23,12 @@ const getOneUser = (req, res) => {
 
 // create user
 const postUser = (req, res) => {
-	const {username, password,} = req.body;
+	const { username, password } = req.body;
 
 	const lastId = inMemoryUser.length;
 	const id = lastId + 1;
 
-	let newUser = 
-	{id: id, username: username, password: password, role: 'user'};
+	const newUser = { id: id, username: username, password: password, role: 'user' };
 
 	inMemoryUser.push(newUser);
 
@@ -40,7 +39,6 @@ const updateUser = (req, res) => {
   const { id } = req.params;
   const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id))[0];
   const {username, password, role} = req.body;
-  
   if(!user) {
 		res.status(404).json('There is no user with the given information on this platform');
 		return;
@@ -69,11 +67,4 @@ const deleteUser = (req, res) => {
   res.status(200).json('The user has been successfully deleted');
 
 }
-
-module.exports = {
-  getUsers,
-  getOneUser,
-  postUser,
-	updateUser,
-	deleteUser,
-}
+export default(getUsers, getOneUser, postUser, updateUser, deleteUser,);

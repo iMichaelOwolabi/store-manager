@@ -46,7 +46,7 @@ select {
 }
 .admin {
 	visibility: visible;
-	display: none;
+	display: block;
 }
 .modify-btn {
 	background-color: #8B4513;

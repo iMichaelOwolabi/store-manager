@@ -18,13 +18,21 @@ export const getOneUser = (req, res) => {
 // create user
 export const postUser = (req, res) => {
   const { username, password } = req.body;
-
   const lastId = inMemoryUser.length;
   const id = lastId + 1;
-
   const newUser = {
     id, username, password, role: 'user',
   };
+
+  if (!req.body.username) {
+    return res.status(400).json('Username is required');
+  }
+  if (!req.body.password) {
+    return res.status(400).json('Password is required');
+  }
+  if (!req.body.role) {
+    return res.status(400).json('The user role must be specified');
+  }
 
   inMemoryUser.push(newUser);
 

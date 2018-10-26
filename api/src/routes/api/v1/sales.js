@@ -1,10 +1,12 @@
 import express from 'express';
 
-import salesController from '../../../controller/sales';
+import {
+  getAllSales,
+  getOneSales,
+  postSales,
+} from '../../../controller/sales';
 
 const router = express.Router();
-
-const { getAllSales, getOneSales, postSales } = salesController;
 
 // Get all sales record
 router.get('/', getAllSales);
@@ -13,6 +15,6 @@ router.get('/', getAllSales);
 router.get('/:id', getOneSales);
 
 // Creating a new sales record
- router.post('/', postSales);
+router.post('/', postSales);
 
 export default(router);

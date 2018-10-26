@@ -1,16 +1,20 @@
 import express from 'express';
 
-import productController from '../../../controller/products';
+import {
+  getAllProducts,
+  getOneProduct,
+  postProduct,
+  updateProduct,
+  deleteProduct,
+} from '../../../controller/products';
 
 const router = express.Router();
 
-const { updateProduct, getOne, getAll, postProduct, deleteProduct } = productController;
-
 // List all products.
-router.get('/', getAll);
+router.get('/', getAllProducts);
 
 // Getting a specific product
-router.get('/:id', getOne);
+router.get('/:id', getOneProduct);
 
 // Creating a new product
 router.post('/', postProduct);

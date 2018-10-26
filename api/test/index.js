@@ -1,6 +1,6 @@
-const request = require('supertest');
+import supertest from 'supertest';
 
-const app = require('../src/app');
+import app from '../src/app';
 
 // Test get all users endpoint
 describe('GET /users', () => {

@@ -8,14 +8,11 @@ const getUsers = (req, res) => {
 // get a single user
 const getOneUser = (req, res) => {
 	const { id } = req.params;
-
 	const user = inMemoryUser.filter( theUser => theUser.id === parseInt(id) )[0];
-
 	if(!user){
     res.status(404).json('The specified user does not exist on this platform');
     return;
 	}
-
 	else{
 		res.status(200).json(user);
 	}
@@ -63,8 +60,6 @@ const deleteUser = (req, res) => {
 	}
   const userIndex = inMemoryUser.indexOf(user);
   inMemoryUser.splice(userIndex, 1);
-  
   res.status(200).json('The user has been successfully deleted');
-
 }
-export default(getUsers, getOneUser, postUser, updateUser, deleteUser,);
+export default(getUsers, getOneUser, postUser, updateUser, deleteUser);

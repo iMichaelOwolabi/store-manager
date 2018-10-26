@@ -54,7 +54,7 @@ export const updateProduct = (req, res) => {
   if (!newUpdate) {
     res.status(400).send('Bad request, kindly check the supplied values');
   }
-  res.status(200).location(`./api/products/${id}`).json(newUpdate);
+  res.status(201).location(`./api/products/${id}`).json(newUpdate);
 };
 export const deleteProduct = (req, res) => {
   const { id } = req.params;
@@ -65,5 +65,5 @@ export const deleteProduct = (req, res) => {
   }
   const productIndex = inMemoryProducts.indexOf(product);
   inMemoryProducts.splice(productIndex, 1);
-  res.status(200).json('The product has been successfully deleted');
+  res.status(204).json('The product has been successfully deleted');
 };

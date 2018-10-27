@@ -1,21 +1,34 @@
 import inMemorySalesRecord from '../../model/sales';
 
+// get all sales record
 export const getAllSales = (req, res) => {
-  res.status(200).json(inMemorySalesRecord);
+  return res.status(200).json({
+    success: 'True',
+    message: 'All sales record found',
+    inMemorySalesRecord,
+  });
 };
 
+// get one sales record
 export const getOneSales = (req, res) => {
   const { id } = req.params;
   const sales = inMemorySalesRecord.filter(theSales => theSales.id === parseInt(id, 10))[0];
 
   if (!sales) {
-    res.status(404).json('The specified sales record does not exist on this platform');
-    return;
+    return res.status(404).json({
+      success: 'False',
+      message: 'The specified sales record does not exist on this platform',
+    });
   }
 
-  res.status(200).json(sales);
+  return res.status(200).json({
+    success: 'True',
+    message: 'Below is the specified sales record',
+    sales,
+  });
 };
 
+// create a sales record
 export const postSales = (req, res) => {
   const { productName, price, quantity } = req.body;
   const lastId = inMemorySalesRecord.length;
@@ -40,5 +53,10 @@ export const postSales = (req, res) => {
   };
 
   inMemorySalesRecord.push(newSalesRecord);
-  res.status(201).json(newSalesRecord);
+
+  return res.status(201).json({
+    success: 'True',
+    message: 'Sales record successfully created',
+    newSalesRecord,
+  });
 };

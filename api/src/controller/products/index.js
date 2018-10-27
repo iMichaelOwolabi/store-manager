@@ -1,21 +1,34 @@
 import inMemoryProducts from '../../model/products';
 
+// get all products
 export const getAllProducts = (req, res) => {
-  res.status(200).json(inMemoryProducts);
+  return res.status(200).json({
+    success: 'True',
+    message: 'Below are all the products',
+    products: inMemoryProducts,
+  });
 };
 
+// get a single product
 export const getOneProduct = (req, res) => {
   const { id } = req.params;
   const product = inMemoryProducts.filter(theProduct => theProduct.id === parseInt(id, 10))[0];
 
   if (!product) {
-    res.status(404).json('The specified product does not exist on this platform');
-    return;
+    return res.status(404).json({
+      success: 'false',
+      message: 'The specified product does not exist on this platform',
+    });
   }
 
-  res.status(200).json(product);
+  return res.status(200).json({
+    success: 'True',
+    message: 'Below is the specified product',
+    product,
+  });
 };
 
+// create a product
 export const postProduct = (req, res) => {
   const {
     productName, price, category, quantity,
@@ -32,9 +45,14 @@ export const postProduct = (req, res) => {
   };
 
   inMemoryProducts.push(newProduct);
-  res.status(201).json(newProduct);
+  return res.status(201).json({
+    success: 'True',
+    message: 'Product added successfully',
+    newProduct,
+  });
 };
 
+// update a particular product
 export const updateProduct = (req, res) => {
   const { id } = req.params;
   const {
@@ -42,7 +60,10 @@ export const updateProduct = (req, res) => {
   } = req.body;
   const product = inMemoryProducts.filter(theProduct => theProduct.id === parseInt(id, 10))[0];
   if (!product) {
-    res.status(404).send('The product with the given id cannot be found');
+    return res.status(404).send({
+      success: 'False',
+      message: 'The specified product does not exist on this platform',
+    });
   }
   const newUpdate = {
     id,
@@ -51,19 +72,28 @@ export const updateProduct = (req, res) => {
     category,
     quantity,
   };
-  if (!newUpdate) {
-    res.status(400).send('Bad request, kindly check the supplied values');
-  }
-  res.status(201).location(`./api/products/${id}`).json(newUpdate);
+
+  return res.status(201).json({
+    success: 'True',
+    message: 'Product updated successfully',
+    newUpdate,
+  });
 };
+
+// delete a product
 export const deleteProduct = (req, res) => {
   const { id } = req.params;
   const product = inMemoryProducts.filter(theProduct => theProduct.id === parseInt(id, 10))[0];
   if (!product) {
-    res.status(404).send('The product with the given id cannot be found');
-    return;
+    return res.status(404).send({
+      success: 'False',
+      message: 'The specified product does not exist on this platform',
+    });
   }
   const productIndex = inMemoryProducts.indexOf(product);
   inMemoryProducts.splice(productIndex, 1);
-  res.status(204).json('The product has been successfully deleted');
+  return res.status(204).json({
+    success: 'True',
+    message: 'The product has been successfully deleted',
+  });
 };

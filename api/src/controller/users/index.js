@@ -1,18 +1,30 @@
 import inMemoryUser from '../../model/users';
 
-// get all user
-export const getUsers = (req, res) => res.status(200).json(inMemoryUser);
+// get all users
+export const getUsers = (req, res) => {
+  return res.status(200).json({
+    success: 'True',
+    message: 'All users on this platform',
+    inMemoryUser,
+  });
+};
 
 // get a single user
 export const getOneUser = (req, res) => {
   const { id } = req.params;
   const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id, 10))[0];
   if (!user) {
-    res.status(404).json('The specified user does not exist on this platform');
-    return;
+    return res.status(404).json({
+      success: 'False',
+      message: 'The specified user does not exist on this platform',
+    });
   }
 
-  res.status(200).json(user);
+  return res.status(200).json({
+    success: 'True',
+    message: 'Below is the specified user',
+    user,
+  });
 };
 
 // create user
@@ -24,28 +36,31 @@ export const postUser = (req, res) => {
     id, username, password, role: 'user',
   };
 
-  if (!req.body.username) {
-    return res.status(400).json('Username is required');
+  if (!req.body.username || !req.body.password || !req.body.role) {
+    return res.status(400).json({
+      success: 'False',
+      message: 'All fields are required',
+    });
   }
-  if (!req.body.password) {
-    return res.status(400).json('Password is required');
-  }
-  if (!req.body.role) {
-    return res.status(400).json('The user role must be specified');
-  }
-
   inMemoryUser.push(newUser);
 
-  res.status(201).location(`/api/users/${id}`).json(newUser);
+  return res.status(201).json({
+    success: 'True',
+    message: 'User successfully created',
+    newUser,
+  });
 };
+
 // update user
 export const updateUser = (req, res) => {
   const { id } = req.params;
   const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id, 10))[0];
   const { username, password, role } = req.body;
   if (!user) {
-    res.status(404).json('There is no user with the given information on this platform');
-    return;
+    return res.status(404).json({
+      success: 'False',
+      message: 'The specified user does not exist on this platform',
+    });
   }
 
   const userUpdate = {
@@ -54,7 +69,11 @@ export const updateUser = (req, res) => {
   const userIndex = inMemoryUser.indexOf(user);
   inMemoryUser[userIndex] = userUpdate;
 
-  res.status(201).json(userUpdate);
+  return res.status(201).json({
+    success: 'True',
+    message: 'User\'s information successfully updated',
+    userUpdate,
+  });
 };
 
 // delete user
@@ -63,10 +82,15 @@ export const deleteUser = (req, res) => {
   const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id, 10))[0];
 
   if (!user) {
-    res.status(404).json('There is no user with the given information on this platform');
-    return;
+    return res.status(404).json({
+      success: 'False',
+      message: 'The specified user does not exist on this platform',
+    });
   }
   const userIndex = inMemoryUser.indexOf(user);
   inMemoryUser.splice(userIndex, 1);
-  res.status(200).json('The user has been successfully deleted');
+  return res.status(200).json({
+    success: 'True',
+    message: 'The user has been successfully deleted',
+  });
 };

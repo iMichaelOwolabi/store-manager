@@ -2,17 +2,17 @@ import express from 'express';
 
 import homeRoute from './home';
 
-import usersRoute from './api/v1/users';
+import usersRoute from './users';
 
-import productsRoute from './api/v1/products';
+import productsRoute from './products';
 
-import salesRoute from './api/v1/sales';
+import salesRoute from './sales';
 
 const router = express.Router();
 
 router.use('/', homeRoute);
-router.use('/api/v1/users', usersRoute);
-router.use('/api/v1/products', productsRoute);
-router.use('/api/v1/sales', salesRoute);
+router.use('/', usersRoute);
+router.use('/', productsRoute);
+router.use('/', salesRoute);
 
 export default(router);

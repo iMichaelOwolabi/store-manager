@@ -4,17 +4,17 @@ import {
   getAllSales,
   getOneSales,
   postSales,
-} from '../../../controller/sales';
+} from '../controller/sales';
 
 const router = express.Router();
 
 // Get all sales record
-router.get('/', getAllSales);
+router.get('/api/v1/sales', getAllSales);
 
 // Getting a specific sales record
-router.get('/:id', getOneSales);
+router.get('/api/v1/sales/:id', getOneSales);
 
 // Creating a new sales record
-router.post('/', postSales);
+router.post('/api/v1/sales', postSales);
 
 export default(router);

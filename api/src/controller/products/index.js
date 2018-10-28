@@ -5,7 +5,7 @@ export const getAllProducts = (req, res) => {
   return res.status(200).json({
     success: 'True',
     message: 'Below are all the products',
-    products: inMemoryProducts,
+    inMemoryProducts,
   });
 };
 
@@ -55,9 +55,6 @@ export const postProduct = (req, res) => {
 // update a particular product
 export const updateProduct = (req, res) => {
   const { id } = req.params;
-  const {
-    productName, price, category, quantity,
-  } = req.body;
   const product = inMemoryProducts.filter(theProduct => theProduct.id === parseInt(id, 10))[0];
   if (!product) {
     return res.status(404).send({
@@ -65,18 +62,26 @@ export const updateProduct = (req, res) => {
       message: 'The specified product does not exist on this platform',
     });
   }
-  const newUpdate = {
-    id,
+  const {
+    productName,
+    price,
+    category,
+    quantity,
+  } = req.body;
+  const updatedProduct = {
+    id: product.id,
     productName,
     price,
     category,
     quantity,
   };
+  const productIndex = inMemoryProducts.indexOf(product);
+  inMemoryProducts.splice(productIndex, 1, updatedProduct);
 
   return res.status(201).json({
     success: 'True',
     message: 'Product updated successfully',
-    newUpdate,
+    updatedProduct,
   });
 };
 

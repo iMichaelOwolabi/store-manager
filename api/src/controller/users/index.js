@@ -1,13 +1,86 @@
+import bcrypt from 'bcrypt';
+import db from  '../../utility/dbQuery';
 import inMemoryUser from '../../model/users';
-import client from '../../utility/dbConnect';
+import Helper from '../helper';
 
 class UsersController {
+// create user
+  static async postUser(req, res) {
+    const { username, password, role } = req.body;
+
+    if (!req.body.username || !req.body.password || !req.body.role) {
+      return res.status(400).json({
+        success: 'False',
+        message: 'All fields are required',
+      });
+    }
+
+    const userQuery = 'INSERT INTO users(username,password,role) VALUES ($1, $2, $3) RETURNING *';
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    const values = [username, hashedPassword, role];
+    try{
+        const { rows } = await db.query(userQuery, values);
+          return res.status(201).json({
+            success: 'True',
+            message: 'User successfully created',
+            result: rows[0],
+        })
+    }
+    catch(error) {
+      return res.status(400).send({
+        success: 'False',
+        message: 'There is an error with this query',
+        error,
+      });
+    }
+  }
+
+  static async login(req, res) {
+    const { username, password } = req.body;
+    if(!username || !password) {
+      return res.status(400).send('Kindly enter username and password to proceed');
+    }
+    const userQuery = 'SELECT * FROM users WHERE username=$1';
+    try{
+      const { rows } = await db.query(userQuery, [username]);
+      if(!rows[0]){
+        return res.status(400).send({
+          success: 'False',
+          message: 'Incorrect credentials',
+        });
+      }
+      if(!Helper.comparePassword(rows[0].password, password)) {
+        return res.status(400).send({
+          success: 'False',
+          message: 'Incorrect credentials',
+        });
+      };
+      const token = Helper.generateToken(rows[0].id);
+      return res.status(200).send({ token });
+    }
+    catch(error) {
+      return res.status(400).send({message: 'Wey Token', error});
+    }
+  }
+
   // get all users
-  static getUsers(req, res) {
-    res.status(200).json({
-      success: 'True',
-      message: 'All users on this platform',
-    });
+  static async getUsers(req, res) {
+    const userQuery = 'SELECT * FROM users';
+    try{
+    const { rows } = await db.query(userQuery);
+      return res.status(200).json({
+        success: 'True',
+        message: 'All users on this platform',
+        Users: rows,
+      });
+    }
+    catch(error) {
+        return res.status(400).send({
+          success: 'False',
+          message: 'There is an error with this query',
+          error,
+        });
+    }
   }
 
   static getOneUser(req, res) {
@@ -26,77 +99,36 @@ class UsersController {
     });
   }
 
-  // create user
-  static postUser(req, res) {
-    const { username, password, role } = req.body;
-
-    if (!req.body.username || !req.body.password || !req.body.role) {
-      return res.status(400).json({
-        success: 'False',
-        message: 'All fields are required',
-      });
-    }
-
-    const userQuery = 'INSERT INTO users(username,password,role) VALUES ($1, $2, $3) RETURNING *';
-    const values = [username, password, role];
-    client.query(userQuery, values, (error, result) => {
-      if (error) {
-        return res.status(400).send({
-          success: 'False',
-          message: 'There is an error with this query',
-          error,
-        });
-      }
-      return res.status(201).json({
-        success: 'True',
-        message: 'User successfully created',
-        result: result.rows[0],
-      });
-    });
-    return res.status(201);
-  }
 
   // update user
-  static updateUser(req, res) {
+  static async updateUser(req, res) {
     const { id } = req.params;
-    const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id, 10))[0];
     const { username, password, role } = req.body;
-    if (!user) {
-      return res.status(404).json({
-        success: 'False',
-        message: 'The specified user does not exist on this platform',
-      });
-    }
 
-    const userUpdate = {
-      id, username, password, role,
-    };
-    const userIndex = inMemoryUser.indexOf(user);
-    inMemoryUser[userIndex] = userUpdate;
+    const findUser = 'SELECT * FROM users WHERE id=$1';
+    const updateQuery = 'UPDATE users SET role=$1 WHERE id=$2 RETURNING *';
+
+    try{
+      const { rows } = await db.query(findUser, id);
+      if(!rows) {
+        return res.status(404).send({
+          success: 'False',
+          message: 'User not found',
+        });
+    }
+    const values = [ role, id ];
+
+    const response = await db.query(updateQuery, values);
+    return res.status(200).send(response.rows[0]);
+    }
+    catch(error) {
+      return res.status(400).send(error);
+    }
 
     return res.status(201).json({
       success: 'True',
       message: 'User\'s information successfully updated',
       userUpdate,
-    });
-  }
-
-  // delete user
-  static deleteUser(req, res) {
-    const { id } = req.params;
-    const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id, 10))[0];
-
-    if (!user) {
-      return res.status(404).json({
-        success: 'False',
-        message: 'The specified user does not exist on this platform',
-      });
-    }
-    const userIndex = inMemoryUser.indexOf(user);
-    inMemoryUser.splice(userIndex, 1);
-    return res.status(200).json({
-      success: 'True',
-      message: 'The user has been successfully deleted',
     });
   }
 }

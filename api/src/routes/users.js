@@ -1,6 +1,9 @@
+import dotenv from 'dotenv';
 import express from 'express';
-
 import UsersController from '../controller/users';
+import Auth from '../utility/auth';
+
+dotenv.config();
 
 const router = express.Router();
 
@@ -11,12 +14,11 @@ router.get('/api/v1/users', UsersController.getUsers);
 router.get('/api/v1/users/:id', UsersController.getOneUser);
 
 // Creating a new user
-router.post('/api/v1/users', UsersController.postUser);
+router.post('/api/v1/auth/signup', Auth.verifyToken, UsersController.postUser);
+
+router.post('/api/v1/auth/login', UsersController.login);
 
 // Updating a user information
 router.put('/api/v1/users/:id', UsersController.updateUser);
-
-// Delete a user account
-router.delete('/api/v1/users/:id', UsersController.deleteUser);
 
 export default router;

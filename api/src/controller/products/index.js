@@ -1,98 +1,142 @@
 import inMemoryProducts from '../../model/products';
-import client from '../../utility/dbConnect';
+import db from  '../../utility/dbQuery';
 
 class ProductsController {
   // get all products
-  static getAllProducts(req, res) {
-    client.query('SELECT * FROM user', (err, data) => res.status(200).json({
-      success: 'True',
-      message: 'Below are all the products',
-      data,
-    }));
+  static async getAllProducts(req, res) {
+    const productsQuery = 'SELECT * FROM products';
+    try{
+      const { rows } = await db.query(productsQuery);
+        return res.status(200).json({
+          success: 'True',
+          message: 'Below is the list of all prodcts',
+          Products: rows,
+        });
+    }
+    catch(error) {
+      return res.status(400).send({
+        success: 'False',
+        message: 'There is an error with this query',
+        error,
+      });
+    }
   }
-
   // get a single product
-  static getOneProduct(req, res) {
-    client.query('SELECT * FROM user', (err, data) => res.status(200).json({
-      success: 'True',
-      message: 'Below are all the products',
-      data,
-    }));
+  static async getOneProduct(req, res) {
+    const { id } = req.params;
+    const productsQuery = 'SELECT * FROM products WHERE id = $1';
+
+    try{
+      const { rows } = await db.query(productsQuery, [id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          success: 'False',
+          message: 'Product not found',
+        });
+      }
+      return res.status(200).send(rows[0]);
+    }
+    catch(error) {
+      return res.status(400).send({
+        success: 'False',
+        message: 'Bad Request',
+        error,
+      });
+    }
+
   }
 
   // create a product
-  static postProduct(req, res) {
+  static async postProduct(req, res) {
     const {
-      productName, price, category, quantity,
+      productName, price, quantity, productImage
     } = req.body;
-    const lastId = inMemoryProducts.length;
-    const id = lastId + 1;
 
-    const newProduct = {
-      id,
-      productName,
-      price,
-      category,
-      quantity,
-    };
-
-    inMemoryProducts.push(newProduct);
-    return res.status(201).json({
-      success: 'True',
-      message: 'Product added successfully',
-      newProduct,
-    });
+    const productsQuery = 'INSERT INTO products(productname,price,quantity,productimage) VALUES ($1, $2, $3, $4) RETURNING *';
+    const values = [productName, price, quantity, productImage];
+    
+    try{
+      const { rows } = await db.query(productsQuery, values);
+        return res.status(201).json({
+          success: 'True',
+          message: 'Product successfully created',
+          result: rows[0],
+      })
+    }
+    catch(error) {
+      return res.status(400).send({
+        success: 'False',
+        message: 'There is an error with this query',
+        error,
+      });
+    }
   }
 
   // update a particular product
-  static updateProduct(req, res) {
+  static async updateProduct(req, res) {
     const { id } = req.params;
-    const product = inMemoryProducts.filter(theProduct => theProduct.id === parseInt(id, 10))[0];
-    if (!product) {
-      return res.status(404).send({
-        success: 'False',
-        message: 'The specified product does not exist on this platform',
-      });
-    }
+
     const {
       productName,
       price,
-      category,
       quantity,
+      productImage,
     } = req.body;
-    const updatedProduct = {
-      id: product.id,
-      productName,
-      price,
-      category,
-      quantity,
-    };
-    const productIndex = inMemoryProducts.indexOf(product);
-    inMemoryProducts.splice(productIndex, 1, updatedProduct);
 
-    return res.status(201).json({
-      success: 'True',
-      message: 'Product updated successfully',
-      updatedProduct,
-    });
+    const findProduct = 'SELECT * FROM products WHERE id = $1';
+    const productsQuery = 'UPDATE products SET productname=$1, price=$2, quantity=$3, productimage=$4 WHERE id=$5 RETURNING *';
+
+    try{
+      const { rows } = await db.query(findProduct, [id]);
+      if(!rows[0]){
+        return res.status(404).send({
+          success: 'False',
+          message: 'Product not found',
+        });
+      }
+      const values = [productName, price, quantity, productImage, id];
+      const prodcts = await db.query(productsQuery, values);
+      return res.status(201).send({
+        success: 'True',
+        message: 'Product updated successfully',
+        Product: prodcts.rows[0],
+      });
+    }
+    catch(error) {
+      return res.status(400).send({
+        success: 'False',
+        message: 'Bad request',
+        error,
+      })
+    }
   }
 
   // delete a product
-  static deleteProduct(req, res) {
+  static async deleteProduct(req, res) {
     const { id } = req.params;
-    const product = inMemoryProducts.filter(theProduct => theProduct.id === parseInt(id, 10))[0];
-    if (!product) {
-      return res.status(404).send({
+    const findProduct = 'SELECT * FROM products WHERE id = $1';
+
+    try{
+      const product = await db.query(findProduct, [id]);
+      if(!product.rows[0]){
+        return res.status(404).send({
+          success: 'False',
+          message: 'Product not found',
+        });
+      }
+    const productsQuery = 'DELETE FROM products WHERE id=$1';
+      const { rows } = await db.query(productsQuery, [id]);
+      return res.status(200).send({
+        success: 'True',
+        message: 'Product successfully deleted',
+      })
+    }
+    catch(error){
+      return res.status(400).send({
         success: 'False',
-        message: 'The specified product does not exist on this platform',
+        message: 'Bad request',
       });
     }
-    const productIndex = inMemoryProducts.indexOf(product);
-    inMemoryProducts.splice(productIndex, 1);
-    return res.status(204).json({
-      success: 'True',
-      message: 'The product has been successfully deleted',
-    });
   }
 }
 

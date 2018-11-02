@@ -48,7 +48,7 @@ supertest
 
 ### Hosted Application
 (https://imichaelowolabi.github.io/store-manager/UI/)
-(https://yourstoremanager.herokuapp.com/api/v1/ "API")
+(https://yourstoremanager.herokuapp.com/api/v1/)
 
 ### Inspiration
 Andela Bootcamp Challenge

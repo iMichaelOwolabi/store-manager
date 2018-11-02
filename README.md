@@ -53,8 +53,8 @@ supertest
 Andela Bootcamp Challenge
 
 ### Credits
-Got so much help and motivation from my bootcamp **LFAs, colleagues** and so many online tutorials in developing this application
-one of such is online article is  (https://www.codementor.io/olawalealadeusi896/building-a-simple-api-with-nodejs-expressjs-postgresql-db-and-jwt-3-mke10c5c5)
+Got so much help and motivation from my bootcamp **LFAs, colleagues** and so many online tutorials in developing this application,
+one of such online article is  (https://www.codementor.io/olawalealadeusi896/building-a-simple-api-with-nodejs-expressjs-postgresql-db-and-jwt-3-mke10c5c5)
 
 ### N:B
 The application is being actively worked on so if you notice any errors or anything breaking, kindly get in touch via (michael.i.owolabi@gmail.com)

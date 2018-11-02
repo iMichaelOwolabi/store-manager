@@ -1,6 +1,5 @@
 ## store-manager
 
-### Build Status
 [![Build Status](https://travis-ci.org/iMichaelOwolabi/store-manager.svg?branch=develop)](https://travis-ci.org/iMichaelOwolabi/store-manager)
 
 ### Introduction

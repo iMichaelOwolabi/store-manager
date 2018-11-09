@@ -2,22 +2,22 @@ import request from 'supertest';
 
 import app from '../src/app';
 
-// Test get all users endpoint
-describe('GET /users', () => {
-  it('respond with json containing a list of all users', (done) => {
+// Test to get a specific user endpoint
+describe('GET /user/:id', () => {
+  it('respond with json containing a single user', (done) => {
     request(app)
-      .get('/api/v1/users')
+      .get('/api/v1/users/1')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
 });
 
-// Test to get a specific user endpoint
-describe('GET /user/:id', () => {
-  it('respond with json containing a single user', (done) => {
+// Test get all users endpoint
+describe('GET /users', () => {
+  it('respond with json containing a list of all users', (done) => {
     request(app)
-      .get('/api/v1/users/1')
+      .get('/api/v1/users')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);

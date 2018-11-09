@@ -6,17 +6,18 @@ class Auth {
     const token = req.headers['x-access-token'];
     if(!token) {
       return res.status(401).send({
-        success: 'False',
+        success: false,
         message: 'Unauthorized User',
       });
     }
     try{
       const decoded = await jwt.verify(token, process.env.SECRET);
+      req.decoded = decoded;
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.id]);
       if(!rows[0]) {
         return res.status(401).send({
-          success: 'False',
+          success: false,
           message: 'Unauthorized User',
         });
       }
@@ -29,17 +30,59 @@ class Auth {
   }
 
   static async isAdmin (req, res, next) {
+    const token = req.headers['x-access-token'];
     try{
+      const decoded = await jwt.verify(token, process.env.SECRET);
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.id]);
-      for(i = 0; i < rows.length; i++){
-        if(rows[rows.length - 1] !== 'superadmin')
-          return res.status(401).send({
-            success: 'False',
-            message: 'Unauthorized User',
-          });
+      console.log(rows[0].role);
+      if(rows[0].role === "superadmin" || rows[0].role === "admin") {
+        return next();
       }
-      req.user = { id: decoded.id };
+      if(rows[0].role !== "superadmin" || rows[0].role !== "admin") {
+        return res.status(401).send({
+          success: false,
+          message: 'Unauthorized user',
+        });
+      }
+      next();
+    }
+    catch(error) {
+      return res.status(400).send(error);
+    }
+  }
+
+  static async isUser (req, res, next) {
+    const token = req.headers['x-access-token'];
+    try{
+      const decoded = await jwt.verify(token, process.env.SECRET);
+      const text = 'SELECT * FROM users WHERE id = $1';
+      const { rows } = await db.query(text, [decoded.id]);
+      if(rows[0].role !== 'user') {
+        return res.status(401).send({
+          success: false,
+          message: 'Unauthorized user',
+        });
+      }
+      next();
+    }
+    catch(error) {
+      return res.status(400).send(error);
+    }
+  }
+
+  static async isUserOrAdmin (req, res, next) {
+    const token = req.headers['x-access-token'];
+    try{
+      const decoded = await jwt.verify(token, process.env.SECRET);
+      const text = 'SELECT * FROM users WHERE id = $1';
+      const { rows } = await db.query(text, [decoded.id]);
+      if(rows[0].role !== 'user' || rows[0].role !== 'admin' || rows[0].role !== 'superadmin') {
+        return res.status(401).send({
+          success: false,
+          message: 'Unauthorized user',
+        });
+      }
       next();
     }
     catch(error) {

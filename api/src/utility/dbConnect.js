@@ -69,7 +69,29 @@ const createProductsTable = () => {
     });
 };
 
-// drop Table if exists
+
+const createSalesTable = () => {
+  const createTable = `CREATE TABLE IF NOT EXISTS
+  sales(
+    id SERIAL PRIMARY KEY,
+    productid INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    amount INTEGER NOT NULL,
+    userid INTEGER NOT NULL,
+    FOREIGN KEY (userId) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (productId) REFERENCES products (id) ON DELETE CASCADE
+  )`;
+  pool.query(createTable)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+
 
 const dropUsersTable = () => {
   const dropTable = 'DROP TABLE IF EXISTS';
@@ -97,9 +119,23 @@ const dropProductsTable = () => {
     });
 };
 
+const dropSalesTable = () => {
+  const dropTable = 'DROP TABLE IF EXISTS';
+  pool.query(dropTable)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+
 const createAllTables = () => {
   createUsersTable();
   createProductsTable();
+  createSalesTable();
 };
 
 const insertUser = () => {
@@ -121,6 +157,7 @@ const insertUser = () => {
 const dropAllTables = () => {
   dropUsersTable();
   dropProductsTable();
+  createSalesTable();
 };
 
 pool.on('remove', () => {
@@ -131,10 +168,12 @@ pool.on('remove', () => {
 module.exports = {
   createUsersTable,
   createProductsTable,
+  createSalesTable,
   createAllTables,
   insertUser,
   dropUsersTable,
   dropProductsTable,
+  dropSalesTable,
   dropAllTables,
 };
 

@@ -1,107 +1,84 @@
 import inMemorySalesRecord from '../../model/sales';
+import db from '../../utility/dbQuery';
+import { realpathSync } from 'fs';
 
 class SalesController {
   // get all sales record
-  static getAllSales(req, res) {
-    res.status(200).json({
-      success: 'True',
-      message: 'All sales record found',
-      inMemorySalesRecord,
-    });
+  static async getAllSales (req, res) {
+
+    const salesQuery = 'SELECT * FROM sales';
+    try{
+      const { rows } = await db.query(salesQuery);
+      return res.status(200).send({
+        success: true,
+        message: 'All sales record found',
+        sales: rows,
+      });
+    }
+    catch(error){
+      return res.status(400).send({
+        success: 'False',
+        message: 'There is an error with this query',
+        error,
+      });
+    } 
   }
 
   // get one user sales record
-  static getOneUserSales(req, res) {
-    const { user } = req.params;
-
-    let userSales;
-    try {
-      userSales = Object.entries(inMemorySalesRecord[user]);
-    } catch (error) {
-      console.error(error.message);
-    }
-
-    if (!userSales) {
-      return res.status(404).json({
-        success: 'False',
-        message: 'The specified sales record does not exist on this platform',
+  static async getOneUserSales(req, res) {
+    const { userId } = req.params;
+    const salesQuery = 'SELECT * FROM sales WHERE userid=$1';
+    try{
+      const { rows } = await db.query(salesQuery, [userId]);
+      if(!rows[0]){
+        return res.status(404).send({
+          success: false,
+          message: 'Sales record not found',
+        });
+      }
+      return res.status(200).send({
+        success: true,
+        message: 'Below is the specified sales record',
+        Data: {
+          UserSales: rows,
+        },
       });
     }
-
-    return res.status(200).json({
-      success: 'True',
-      message: 'Below is the specified user sales record',
-      userSales,
-    });
-  }
-
-  // get one sales record for one user
-  static getOneSalesForOneUser(req, res) {
-    let { user, id } = req.params;
-
-    id = parseInt(id, 10);
-    const salesId = id - 1;
-
-    let userSales;
-    try {
-      userSales = (inMemorySalesRecord[user][salesId]);
-    } catch (error) {
-      console.error(error.message);
-    }
-
-    if (!userSales) {
-      return res.status(404).json({
-        success: 'False',
-        message: 'The specified sales record does not exist on this platform',
+    catch(error){
+      return res.status(400).send({
+        success: false,
+        message: 'Bad Request',
+        error,
       });
     }
-
-    return res.status(200).json({
-      success: 'True',
-      message: 'Below is the specified sales record',
-      userSales,
-    });
   }
 
   // create a sales record
-  static postSales(req, res) {
+  static async postSales(req, res) {
     const {
-      productName,
-      amount,
+      productId,
       quantity,
+      amount,
+      userId,
     } = req.body;
+    const salesQuery = 'INSERT INTO sales(productid,quantity,amount,userid) VALUES ($1, $2, $3, $4) RETURNING *';
+    const values = [productId, quantity, amount, userId];
 
-    const username = 'user4';
-    let id;
-    let lastId;
-
-    // checking if the key already exists, if not creates it
-    if (inMemorySalesRecord[username] === undefined) {
-      id = 1;
-    } else {
-      lastId = inMemorySalesRecord[username].length;
-      id = lastId + 1;
+    try{
+      const { rows } = await db.query(salesQuery, values);
+      return res.status(201).send({
+        success: true,
+        message: 'Sales record created successfully',
+        result: rows[0],
+      });
     }
-
-    const newSales = {
-      id,
-      productName,
-      quantity,
-      amount,
-    };
-
-    if (inMemorySalesRecord[username] === undefined) {
-      inMemorySalesRecord[username] = [];
-      inMemorySalesRecord[username].push(newSales);
-    } else {
-      inMemorySalesRecord[username].push(newSales);
+    catch(error){
+      return res.status(400).send({
+        success: false,
+        message: 'There is an error with this query',
+        error,
+      });
     }
-
-    return res.status(201).json({
-      success: 'True',
-      message: 'Sales record successfully created',
-      newSales,
-    });
   }
 }
 

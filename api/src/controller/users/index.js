@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import db from  '../../utility/dbQuery';
-import inMemoryUser from '../../model/users';
 import Helper from '../helper';
 
 class UsersController {
@@ -10,7 +9,7 @@ class UsersController {
 
     if (!req.body.username || !req.body.password || !req.body.role) {
       return res.status(400).json({
-        success: 'False',
+        success: false,
         message: 'All fields are required',
       });
     }
@@ -21,14 +20,14 @@ class UsersController {
     try{
         const { rows } = await db.query(userQuery, values);
           return res.status(201).json({
-            success: 'True',
+            success: true,
             message: 'User successfully created',
             result: rows[0],
         })
     }
     catch(error) {
       return res.status(400).send({
-        success: 'False',
+        success: false,
         message: 'There is an error with this query',
         error,
       });
@@ -37,29 +36,37 @@ class UsersController {
 
   static async login(req, res) {
     const { username, password } = req.body;
+    
     if(!username || !password) {
-      return res.status(400).send('Kindly enter username and password to proceed');
+      return res.status(400).send({
+        success: false,
+        message: 'Kindly enter username and password to proceed',
+      });
     }
     const userQuery = 'SELECT * FROM users WHERE username=$1';
     try{
       const { rows } = await db.query(userQuery, [username]);
       if(!rows[0]){
         return res.status(400).send({
-          success: 'False',
+          success: false,
           message: 'Incorrect credentials',
         });
       }
       if(!Helper.comparePassword(rows[0].password, password)) {
         return res.status(400).send({
-          success: 'False',
+          success: false,
           message: 'Incorrect credentials',
         });
       };
       const token = Helper.generateToken(rows[0].id);
-      return res.status(200).send({ token });
+      return res.status(200).send({ 
+        success: true,
+        message: 'You are welcome to the store manager',
+        Token: token
+       });
     }
     catch(error) {
-      return res.status(400).send({message: 'Wey Token', error});
+      return res.status(400).send({message: error});
     }
   }
 
@@ -69,14 +76,14 @@ class UsersController {
     try{
     const { rows } = await db.query(userQuery);
       return res.status(200).json({
-        success: 'True',
+        success: true,
         message: 'All users on this platform',
         Users: rows,
       });
     }
     catch(error) {
         return res.status(400).send({
-          success: 'False',
+          success: false,
           message: 'There is an error with this query',
           error,
         });
@@ -88,12 +95,12 @@ class UsersController {
     const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id, 10))[0];
     if (!user) {
       return res.status(404).json({
-        success: 'False',
+        success: false,
         message: 'The specified user does not exist on this platform',
       });
     }
     return res.status(200).json({
-      success: 'True',
+      success: true,
       message: 'Below is the specified user',
       user,
     });
@@ -112,7 +119,7 @@ class UsersController {
       const { rows } = await db.query(findUser, id);
       if(!rows) {
         return res.status(404).send({
-          success: 'False',
+          success: false,
           message: 'User not found',
         });
     }

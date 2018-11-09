@@ -2,7 +2,7 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/api/v1', (req, res) => {
   res.send('Hello there, this is the store manager API');
 });
 

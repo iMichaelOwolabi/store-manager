@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import db from  '../../utility/dbQuery';
-import inMemoryUser from '../../model/users';
 import Helper from '../helper';
 
 class UsersController {
@@ -37,8 +36,12 @@ class UsersController {
 
   static async login(req, res) {
     const { username, password } = req.body;
+    
     if(!username || !password) {
-      return res.status(400).send('Kindly enter username and password to proceed');
+      return res.status(400).send({
+        success: false,
+        message: 'Kindly enter username and password to proceed',
+      });
     }
     const userQuery = 'SELECT * FROM users WHERE username=$1';
     try{
@@ -56,7 +59,11 @@ class UsersController {
         });
       };
       const token = Helper.generateToken(rows[0].id);
-      return res.status(200).send({ token });
+      return res.status(200).send({ 
+        success: true,
+        message: 'You are welcome to the store manager',
+        Token: token
+       });
     }
     catch(error) {
       return res.status(400).send({message: error});

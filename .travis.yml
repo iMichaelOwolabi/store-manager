@@ -1,7 +1,9 @@
 language: node_js
 node_js:
  - "stable"
+services:
+ -postgresql
 before_script:
- - npm install
+ - psql -c "create database testdb;" -U postgres
 script:
  - npm test

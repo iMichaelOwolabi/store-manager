@@ -2,10 +2,9 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 class Helper {
-  
   static hashedPassword(password) {
     return bcrypt.hashSync(password, 10);
-  } 
+  }
 
   static comparePassword(hashedPassword, password) {
     return bcrypt.compareSync(password, hashedPassword);
@@ -13,9 +12,9 @@ class Helper {
 
   static generateToken(id) {
     const token = jwt.sign({
-      id: id,
+      id,
     },
-    process.env.SECRET, { expiresIn: '1d' },);
+    process.env.SECRET, { expiresIn: '1d' });
     return token;
   }
 }

@@ -1,4 +1,3 @@
-import inMemoryProducts from '../../model/products';
 import db from  '../../utility/dbQuery';
 
 class ProductsController {
@@ -43,14 +42,13 @@ class ProductsController {
         error,
       });
     }
-
   }
 
   // create a product
   static async postProduct(req, res) {
     const {
       productName, price, quantity, productImage
-    } = req.body;
+    } = req.body; 
 
     const productsQuery = 'INSERT INTO products(productname,price,quantity,productimage) VALUES ($1, $2, $3, $4) RETURNING *';
     const values = [productName, price, quantity, productImage];

@@ -3,11 +3,19 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+let connectionString = process.env.DATABASE_URL;
+
+// eslint-disable-next-line no-cond-assign
+if (process.env.NODE_ENV === 'test') {
+  connectionString = process.env.DATABASE_URL_TEST;
+}
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString,
 });
 
-export default {
+export default pool;
+/* export default {
   query(text, params) {
     return new Promise((resolve, reject) => {
       pool.query(text, params)
@@ -19,4 +27,4 @@ export default {
         });
     });
   },
-};
+}; */

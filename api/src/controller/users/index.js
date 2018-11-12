@@ -26,7 +26,7 @@ class UsersController {
         })
     }
     catch(error) {
-      return res.status(400).send({
+      return res.status(400).json({
         success: false,
         message: 'There is an error with this query',
         error,
@@ -62,7 +62,7 @@ class UsersController {
       return res.status(200).send({ 
         success: true,
         message: 'You are welcome to the store manager',
-        Token: token
+        token
        });
     }
     catch(error) {
@@ -71,7 +71,7 @@ class UsersController {
   }
 
   // get all users
-  static async getUsers(req, res) {
+  static async getUsers(req, res, next) {
     const userQuery = 'SELECT * FROM users';
     try{
     const { rows } = await db.query(userQuery);
@@ -81,29 +81,39 @@ class UsersController {
         Users: rows,
       });
     }
-    catch(error) {
+    catch(err) {
         return res.status(400).send({
           success: false,
           message: 'There is an error with this query',
-          error,
+          err,
         });
     }
   }
 
-  static getOneUser(req, res) {
+  static async getOneUser(req, res) {
     const { id } = req.params;
-    const user = inMemoryUser.filter(theUser => theUser.id === parseInt(id, 10))[0];
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'The specified user does not exist on this platform',
+    const userQuery = 'SELECT * FROM users WHERE id = $1';
+
+    try{
+      const { rows } = await db.query(userQuery, [id]);
+      if (!rows[0]) {
+        return res.status(404).send({
+          success: false,
+          message: 'The specified user does not exist on this platform',
+        });
+      }
+      return res.status(200).send({
+        success: true,
+        message: 'Below is the specified user',
+        users: rows[0],
       });
     }
-    return res.status(200).json({
-      success: true,
-      message: 'Below is the specified user',
-      user,
-    });
+    catch(error) {
+      return res.status(400).send({
+        success: false,
+        message: 'Kindly check the values supplied and try again',
+      });
+    }
   }
 
 

@@ -1,6 +1,4 @@
-import inMemorySalesRecord from '../../model/sales';
 import db from '../../utility/dbQuery';
-import { realpathSync } from 'fs';
 
 class SalesController {
   // get all sales record

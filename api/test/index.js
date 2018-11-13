@@ -27,10 +27,11 @@ describe('POST /api/v1/auth/login', () => {
       .post('/api/v1/auth/login')
       .send(wrongCredentials)
       .end((err, res) => {
+        console.log(res.body);
         expect(res.status).to.equal(400);
         expect(res.body.success).to.equal(false);
         expect(res.body.message).to.equal('Incorrect credentials');
-        if (err) return console.log(done(err));
+        if (err) console.error(err);
         done();
       });
   });

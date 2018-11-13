@@ -7,10 +7,17 @@ class UsersController {
   static async postUser(req, res) {
     const { username, password, role } = req.body;
 
-    if (!req.body.username || !req.body.password || !req.body.role) {
+    if (!req.body.username) {
       return res.status(400).json({
         success: false,
-        message: 'All fields are required',
+        message: 'username is required to register',
+      });
+    }
+
+    if (!req.body.password) {
+      return res.status(400).json({
+        success: false,
+        message: 'password is required to register',
       });
     }
 
@@ -120,33 +127,31 @@ class UsersController {
   // update user
   static async updateUser(req, res) {
     const { id } = req.params;
-    const { username, password, role } = req.body;
+    const { role } = req.body;
 
     const findUser = 'SELECT * FROM users WHERE id=$1';
     const updateQuery = 'UPDATE users SET role=$1 WHERE id=$2 RETURNING *';
 
     try{
-      const { rows } = await db.query(findUser, id);
-      if(!rows) {
+      const { rows } = await db.query(findUser, [id]);
+      if(!rows[0]) {
         return res.status(404).send({
           success: false,
           message: 'User not found',
         });
     }
-    const values = [ role, id ];
+    const values = [role, id];
 
-    const response = await db.query(updateQuery, values);
-    return res.status(200).send(response.rows[0]);
+    const users = await db.query(updateQuery, values);
+    return res.status(200).send({
+      success: true,
+      message: 'User\'s information successfully updated',
+      data: users.rows[0],
+    });
     }
     catch(error) {
       return res.status(400).send(error);
     }
-
-    return res.status(201).json({
-      success: 'True',
-      message: 'User\'s information successfully updated',
-      userUpdate,
-    });
   }
 }
 

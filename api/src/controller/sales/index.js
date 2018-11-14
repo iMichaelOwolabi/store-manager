@@ -9,8 +9,8 @@ class SalesController {
       const { rows } = await db.query(salesQuery);
       return res.status(200).send({
         success: true,
-        message: 'All sales record found',
-        sales: rows,
+        message: 'sales record',
+        data: rows,
       });
     }
     catch(error){
@@ -31,15 +31,13 @@ class SalesController {
       if(!rows[0]){
         return res.status(404).send({
           success: false,
-          message: 'Sales record not found',
+          message: 'sales record not found',
         });
       }
       return res.status(200).send({
         success: true,
-        message: 'Below is the specified sales record',
-        Data: {
-          UserSales: rows,
-        },
+        message: 'specified sales record',
+        Data: rows[0],
       });
     }
     catch(error){
@@ -62,12 +60,19 @@ class SalesController {
     const salesQuery = 'INSERT INTO sales(productid,quantity,amount,userid) VALUES ($1, $2, $3, $4) RETURNING *';
     const values = [productId, quantity, amount, userId];
 
+    if (!productId || !quantity || !amount || !userId){
+      return res.status(400).send({
+        success: false,
+        message: 'all fields are required',
+      });
+    }
+
     try{
       const { rows } = await db.query(salesQuery, values);
       return res.status(201).send({
         success: true,
-        message: 'Sales record created successfully',
-        result: rows[0],
+        message: 'sales record created successfully',
+        data: rows[0],
       });
     }
     catch(error){

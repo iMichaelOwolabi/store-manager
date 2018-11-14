@@ -157,7 +157,7 @@ const insertUser = () => {
 const dropAllTables = () => {
   dropUsersTable();
   dropProductsTable();
-  createSalesTable();
+  dropSalesTable();
 };
 
 pool.on('remove', () => {

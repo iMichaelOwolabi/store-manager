@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS
   products(
     id SERIAL PRIMARY KEY,
     productName VARCHAR(128) NOT NULL,
-    price VARCHAR(128) NOT NULL,
-    quantity VARCHAR(128) NOT NULL,
+    price INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
     productImage VARCHAR(128) NOT NULL
   );
 

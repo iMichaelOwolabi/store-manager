@@ -169,6 +169,24 @@ describe('GET /api/v1/users', () => {
       });
   });
 
+  it('should successfully sign up a new user with the right access and credentials', (done) => {
+    dummyUser = {
+      username: 'user3',
+      password: 'user3',
+      role: 'user',
+    };
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(dummyUser)
+      .set('x-access-token', authentication)
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        expect(res.body.success).to.equal(true);
+        if (err) return done(err);
+        done();
+      });
+  });
+
   it('should not update a user without authentication token', (done) => {
     dummyUser = {
       username: 'user2',
@@ -187,7 +205,6 @@ describe('GET /api/v1/users', () => {
         done();
       });
   });
-
 
   it('should not update a user that does not exit', (done) => {
     const dummyUserUpdate = {

@@ -7,14 +7,14 @@ class ProductsController {
     try{
       const { rows } = await db.query(productsQuery);
         return res.status(200).json({
-          success: 'True',
-          message: 'Below is the list of all prodcts',
-          Products: rows,
+          success: true,
+          message: 'all prodcts',
+          data: rows,
         });
     }
     catch(error) {
       return res.status(400).send({
-        success: 'False',
+        success: false,
         message: 'There is an error with this query',
         error,
       });
@@ -29,15 +29,19 @@ class ProductsController {
       const { rows } = await db.query(productsQuery, [id]);
       if (!rows[0]) {
         return res.status(404).send({
-          success: 'False',
-          message: 'Product not found',
+          success: false,
+          message: 'product not found',
         });
       }
-      return res.status(200).send(rows[0]);
+      return res.status(200).send({
+        success: true,
+        message: 'the product',
+        data: rows[0]
+      });
     }
     catch(error) {
       return res.status(400).send({
-        success: 'False',
+        success: false,
         message: 'Bad Request',
         error,
       });
@@ -50,20 +54,26 @@ class ProductsController {
       productName, price, quantity, productImage
     } = req.body; 
 
+    if (!productName || !price || !quantity || !productImage){
+      return res.status(400).send({
+        success: false,
+        message: 'all fields are required',
+      });
+    }
     const productsQuery = 'INSERT INTO products(productname,price,quantity,productimage) VALUES ($1, $2, $3, $4) RETURNING *';
     const values = [productName, price, quantity, productImage];
     
     try{
       const { rows } = await db.query(productsQuery, values);
         return res.status(201).json({
-          success: 'True',
-          message: 'Product successfully created',
-          result: rows[0],
+          success: true,
+          message: 'product successfully added',
+          data: rows[0],
       })
     }
     catch(error) {
       return res.status(400).send({
-        success: 'False',
+        success: false,
         message: 'There is an error with this query',
         error,
       });
@@ -88,21 +98,21 @@ class ProductsController {
       const { rows } = await db.query(findProduct, [id]);
       if(!rows[0]){
         return res.status(404).send({
-          success: 'False',
-          message: 'Product not found',
+          success: false,
+          message: 'product not found',
         });
       }
       const values = [productName, price, quantity, productImage, id];
       const prodcts = await db.query(productsQuery, values);
-      return res.status(201).send({
-        success: 'True',
-        message: 'Product updated successfully',
-        Product: prodcts.rows[0],
+      return res.status(200).send({
+        success: true,
+        message: 'product updated successfully',
+        data: prodcts.rows[0],
       });
     }
     catch(error) {
       return res.status(400).send({
-        success: 'False',
+        success: false,
         message: 'Bad request',
         error,
       })
@@ -118,20 +128,20 @@ class ProductsController {
       const product = await db.query(findProduct, [id]);
       if(!product.rows[0]){
         return res.status(404).send({
-          success: 'False',
-          message: 'Product not found',
+          success: false,
+          message: 'product not found',
         });
       }
     const productsQuery = 'DELETE FROM products WHERE id=$1';
       const { rows } = await db.query(productsQuery, [id]);
       return res.status(200).send({
-        success: 'True',
-        message: 'Product successfully deleted',
+        success: true,
+        message: 'product successfully deleted',
       })
     }
     catch(error){
       return res.status(400).send({
-        success: 'False',
+        success: false,
         message: 'Bad request',
       });
     }

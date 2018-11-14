@@ -4,7 +4,7 @@ class SalesController {
   // get all sales record
   static async getAllSales (req, res) {
 
-    const salesQuery = 'SELECT * FROM sales';
+    const salesQuery = 'SELECT sales.id, products.productname, sales.quantity, amount, products.productimage, userid FROM sales INNER JOIN products ON sales.productid=products.id';
     try{
       const { rows } = await db.query(salesQuery);
       return res.status(200).send({
@@ -15,7 +15,7 @@ class SalesController {
     }
     catch(error){
       return res.status(400).send({
-        success: 'False',
+        success: false,
         message: 'There is an error with this query',
         error,
       });
@@ -25,7 +25,7 @@ class SalesController {
   // get one user sales record
   static async getOneUserSales(req, res) {
     const { userId } = req.params;
-    const salesQuery = 'SELECT * FROM sales WHERE userid=$1';
+    const salesQuery = 'SELECT sales.id, products.productname, sales.quantity, amount, products.productimage, userid FROM sales INNER JOIN products ON sales.productid=products.id WHERE sales.userid = $1';
     try{
       const { rows } = await db.query(salesQuery, [userId]);
       if(!rows[0]){
@@ -37,7 +37,7 @@ class SalesController {
       return res.status(200).send({
         success: true,
         message: 'specified sales record',
-        Data: rows[0],
+        data: rows,
       });
     }
     catch(error){
@@ -72,7 +72,7 @@ class SalesController {
       return res.status(201).send({
         success: true,
         message: 'sales record created successfully',
-        data: rows[0],
+        data: rows,
       });
     }
     catch(error){

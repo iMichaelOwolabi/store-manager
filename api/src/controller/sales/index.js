@@ -1,4 +1,5 @@
 import db from '../../utility/dbQuery';
+import Validations from  '../../utility/validaions';
 
 class SalesController {
   // get all sales record
@@ -24,10 +25,17 @@ class SalesController {
 
   // get one user sales record
   static async getOneUserSales(req, res) {
-    const { userId } = req.params;
-    const salesQuery = 'SELECT sales.id, products.productname, sales.quantity, amount, products.productimage, userid FROM sales INNER JOIN products ON sales.productid=products.id WHERE sales.userid = $1';
+    const { salesId } = req.params;
+
+    if (!Validations.validNumber(salesId)) {
+        return res.status(400).send({
+          success: false,
+          message: 'sales id must be a valid whole number other than zero(0)',
+        });
+    }
+    const salesQuery = 'SELECT sales.id, products.productname, sales.quantity, amount, products.productimage, userid FROM sales INNER JOIN products ON sales.productid=products.id WHERE sales.id = $1';
     try{
-      const { rows } = await db.query(salesQuery, [userId]);
+      const { rows } = await db.query(salesQuery, [salesId]);
       if(!rows[0]){
         return res.status(404).send({
           success: false,
@@ -57,8 +65,6 @@ class SalesController {
       amount,
       userId,
     } = req.body;
-    const salesQuery = 'INSERT INTO sales(productid,quantity,amount,userid) VALUES ($1, $2, $3, $4) RETURNING *';
-    const values = [productId, quantity, amount, userId];
 
     if (!productId || !quantity || !amount || !userId){
       return res.status(400).send({
@@ -66,6 +72,68 @@ class SalesController {
         message: 'all fields are required',
       });
     }
+    if (!Validations.validPriceAndQuantity(productId)) {
+        return res.status(400).send({
+          success: false,
+          message: 'product id must be a valid whole number other than zero(0)',
+        });
+    }
+    if (!Validations.validPriceAndQuantity(quantity)) {
+        return res.status(400).send({
+          success: false,
+          message: 'quantity must be a valid whole number other than zero(0)',
+        });
+    }
+    if (!Validations.validPriceAndQuantity(amount)) {
+        return res.status(400).send({
+          success: false,
+          message: 'amount must be a valid whole number other than zero(0)',
+        });
+    }
+    if (!Validations.validPriceAndQuantity(userId)) {
+        return res.status(400).send({
+          success: false,
+          message: 'user id must be a valid whole number other than zero(0)',
+        });
+    }
+
+    const findUser = 'SELECT * FROM users WHERE id=$1';
+    try{
+      const { rows } = await db.query(findUser, [userId]);
+      if(!rows[0]){
+        return res.status(400).send({
+          success: false,
+          message: 'user with that id cannot be found',
+        });
+      }
+    }
+    catch(error){
+      return res.status(400).send({
+        success: false,
+        message: 'Kindly check the supplied values and try again',
+        error,
+      });
+    }
+    const findProduct = 'SELECT * FROM products WHERE id=$1';
+    try{
+      const { rows } = await db.query(findProduct, [productId]);
+      if(!rows[0]){
+        return res.status(400).send({
+          success: false,
+          message: 'product with that id cannot be found',
+        });
+      }
+    }
+    catch(error){
+      return res.status(400).send({
+        success: false,
+        message: 'Kindly check the supplied values and try again',
+        error,
+      });
+    }
+
+    const salesQuery = 'INSERT INTO sales(productid,quantity,amount,userid) VALUES ($1, $2, $3, $4) RETURNING *';
+    const values = [productId, quantity, amount, userId];
 
     try{
       const { rows } = await db.query(salesQuery, values);

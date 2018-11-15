@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/api/v1/sales', Auth.verifyToken, Auth.isAdmin, SalesController.getAllSales);
 
 // Getting a specific sales record
-router.get('/api/v1/sales/users/:userId', Auth.verifyToken, SalesController.getOneUserSales);
+router.get('/api/v1/sales/:salesId', Auth.verifyToken, SalesController.getOneUserSales);
 
 // Creating a new sales record
 router.post('/api/v1/sales', Auth.verifyToken, Auth.isUser, SalesController.postSales);

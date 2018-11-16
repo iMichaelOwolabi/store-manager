@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import db from  '../../utility/dbQuery';
+import Validations from  '../../utility/validaions';
 import Helper from '../helper';
 
 class UsersController {
@@ -7,17 +8,47 @@ class UsersController {
   static async postUser(req, res) {
     const { username, password, role } = req.body;
 
-    if (!req.body.username) {
+    if (!username) {
       return res.status(400).json({
         success: false,
         message: 'username is required to register',
       });
     }
 
-    if (!req.body.password) {
+    if (!password) {
       return res.status(400).json({
         success: false,
         message: 'password is required to register',
+      });
+    }
+    if (!Validations.acceptableString(username)) {
+      return res.status(400).send({
+        success: false,
+        message: 'username must contain only valid alphanumeric characters',
+      });
+    }
+    if (!Validations.acceptableString(password)) {
+      return res.status(400).send({
+        success: false,
+        message: 'password must contain only valid alphanumeric characters',
+      });
+    }
+
+    const findUser = 'SELECT * FROM users WHERE username=$1';
+    try{
+      const { rows } = await db.query(findUser, [username]);
+      if(rows[0]){
+        return res.status(400).send({
+          success: false,
+          message: 'username already exist',
+        });
+      }
+    }
+    catch(error){
+      return res.status(400).send({
+        success: false,
+        message: 'Kindly check the supplied values and try again',
+        error,
       });
     }
 
@@ -29,7 +60,7 @@ class UsersController {
           return res.status(201).json({
             success: true,
             message: 'User successfully created',
-            result: rows[0],
+            data: rows[0],
         })
     }
     catch(error) {
@@ -85,7 +116,7 @@ class UsersController {
       return res.status(200).json({
         success: true,
         message: 'All users on this platform',
-        Users: rows,
+        data: rows,
       });
     }
     catch(err) {
@@ -99,8 +130,15 @@ class UsersController {
 
   static async getOneUser(req, res) {
     const { id } = req.params;
-    const userQuery = 'SELECT * FROM users WHERE id = $1';
 
+    if (!Validations.validNumber(id)) {
+      return res.status(400).send({
+        success: false,
+        message: 'id must be a valid whole number other than zero(0)',
+      });
+    }
+
+    const userQuery = 'SELECT * FROM users WHERE id = $1';
     try{
       const { rows } = await db.query(userQuery, [id]);
       if (!rows[0]) {
@@ -112,7 +150,7 @@ class UsersController {
       return res.status(200).send({
         success: true,
         message: 'Below is the specified user',
-        users: rows[0],
+        data: rows[0],
       });
     }
     catch(error) {
@@ -128,6 +166,13 @@ class UsersController {
   static async updateUser(req, res) {
     const { id } = req.params;
     const { role } = req.body;
+
+    if (!Validations.validNumber(id)) {
+      return res.status(400).send({
+        success: false,
+        message: 'id must be a valid whole number other than zero(0)',
+      });
+    }
 
     const findUser = 'SELECT * FROM users WHERE id=$1';
     const updateQuery = 'UPDATE users SET role=$1 WHERE id=$2 RETURNING *';

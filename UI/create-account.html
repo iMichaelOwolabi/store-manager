@@ -7,40 +7,42 @@
 	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-	<header>
-		<div class="container">
-			<div id="logo">
-				<h1><a href="#">Store Manager</a></h1>
+	<div class="wrapper">
+		<header>
+			<div class="container">
+				<div id="logo">
+					<h1><a href="#">Store Manager</a></h1>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="dashboard.html">Dashboard</a></li>
+						<li><a href="products.html">Products</a></li>
+						<li><a href="sales.html">Sales</a></li>
+						<li><a href="attendants.html">Attendants</a></li>
+						<li><a href="index.html">Logout</a></li>
+					</ul>
+					<input type="text" placeholder="Search...">
+				</nav>
 			</div>
-			<nav>
-				<ul>
-					<li><a href="dashboard.html">Dashboard</a></li>
-					<li><a href="products.html">Products</a></li>
-					<li><a href="sales.html">Sales</a></li>
-					<li><a href="attendants.html">Attendants</a></li>
-					<li><a href="index.html">Logout</a></li>
-				</ul>
-				<input type="text" placeholder="Search...">
-			</nav>
-		</div>
-	</header>
+		</header>
 
-	<section id="account">
-		<div class="container">
-			<div class="create-box">
-				<h2>New Attendant Account</h2>
-					<form action="#">
-						<input type="text" name="username" id="username" placeholder="Enter Username" required>
-						<input type="password" name="password" id="password" placeholder="Enter Password" required>
-						<input type="password" name="re-password" id="re-password" placeholder="Confirm Password" required>
-						<a href="attendants.html"><button class="create-acc-btn" type="submit">Create Account</button></a>
-					</form>
+		<section id="account">
+			<div class="container">
+				<div class="create-box">
+					<h2>New Attendant Account</h2>
+						<form action="#">
+							<input type="text" name="username" id="username" placeholder="Enter Username" required>
+							<input type="password" name="password" id="password" placeholder="Enter Password" required>
+							<input type="password" name="re-password" id="re-password" placeholder="Confirm Password" required>
+							<a href="attendants.html"><button class="create-acc-btn" type="submit">Create Account</button></a>
+						</form>
+				</div>
 			</div>
-		</div>
-	</section>
-
-	
-
+		</section>
+		<div class="push"></div>
+		<div class="push"></div>
+		<div class="push"></div>
+	</div>
 	<footer>
 		<p>Store Manager, copyright &copy; 2018</p>
 	</footer>

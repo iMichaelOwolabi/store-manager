@@ -7,55 +7,57 @@
 	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-	<header>
+	<div class="wrapper">
+		<header>
+				<div class="container">
+					<div id="logo">
+						<h1><a href="#">Store Manager</a></h1>
+					</div>
+					<nav>
+						<ul>
+							<li><a href="dashboard.html">Dashboard</a></li>
+							<li><a href="products.html">Products</a></li>
+							<li><a href="sales.html">Sales</a></li>
+							<li><a href="attendants.html">Attendants</a></li>
+							<li><a href="index.html">Logout</a></li>
+						</ul>
+						<input type="text" placeholder="Search...">
+				</nav>
+			</div>
+		</header>
+
+		<section id="cart">
 			<div class="container">
-				<div id="logo">
-					<h1><a href="#">Store Manager</a></h1>
-				</div>
-				<nav>
-					<ul>
-						<li><a href="dashboard.html">Dashboard</a></li>
-						<li><a href="products.html">Products</a></li>
-						<li><a href="sales.html">Sales</a></li>
-						<li><a href="attendants.html">Attendants</a></li>
-						<li><a href="index.html">Logout</a></li>
-					</ul>
-					<input type="text" placeholder="Search...">
-			</nav>
-		</div>
-	</header>
-
-	<section id="cart">
-		<div class="container">
-			<h1>Your Shopping Cart</h1>
-			<p class=""><button class="make-sales-btn">Make Sales</button></p>
-			<p class=""><h2>Total: N61, 000</h2></p>
-			<div class="product">
-				<div class="cart-box">
-					<img src="./img/men-boot.png" alt="Product Image">
-					<div class="details">
-						<p>#1</p>
-						<p><h1>Men's Mountain Boot</h1></p>
-						<p>Qty: <input type="number" value="1"></p>
-						<p>Price: N54,0000</p>				
+				<h1>Your Shopping Cart</h1>
+				<p class=""><button class="make-sales-btn">Make Sales</button></p>
+				<p class=""><h2>Total: N61, 000</h2></p>
+				<div class="product">
+					<div class="cart-box">
+						<img src="./img/men-boot.png" alt="Product Image">
+						<div class="details">
+							<p>#1</p>
+							<p><h1>Men's Mountain Boot</h1></p>
+							<p>Qty: <input type="number" value="1"></p>
+							<p>Price: N54,0000</p>				
+						</div>
 					</div>
-				</div>
 
-				<div class="cart-box">
-					<img src="./img/bow-tie.png" alt="Product Image">
-					<div class="details">
-						<p>#2</p>
-						<p><h1>Vintage Bow-Tie</h1></p>
-						<p>Qty: <input type="number" value="1"></p>
-						<p>Price: N7,0000</p>				
+					<div class="cart-box">
+						<img src="./img/bow-tie.png" alt="Product Image">
+						<div class="details">
+							<p>#2</p>
+							<p><h1>Vintage Bow-Tie</h1></p>
+							<p>Qty: <input type="number" value="1"></p>
+							<p>Price: N7,0000</p>				
+						</div>
 					</div>
-				</div>
-
-			</div>	
-
-		</div>
-	</section>
-
+				</div>	
+			</div>
+		</section>
+		<div class="push"></div>
+		<div class="push"></div>
+		<div class="push"></div>
+	</div>
 
 	<footer>
 		<p>Store Manager, copyright &copy; 2018</p>

@@ -7,43 +7,47 @@
 	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-		<header>
-			<div class="container">
-				<div id="logo">
-					<h1><a href="#">Store Manager</a></h1>
+		<div class="wrapper">
+			<header>
+				<div class="container">
+					<div id="logo">
+						<h1><a href="#">Store Manager</a></h1>
+					</div>
+					<nav>
+						<ul>
+							<li><a href="dashboard.html">Dashboard</a></li>
+							<li><a href="products.html">Products</a></li>
+							<li><a href="sales.html">Sales</a></li>
+							<li><a href="attendants.html">Attendants</a></li>
+							<li><a href="index.html">Logout</a></li>
+						</ul>
+						<input type="text" placeholder="Search...">
+					</nav>
 				</div>
-				<nav>
-					<ul>
-						<li><a href="dashboard.html">Dashboard</a></li>
-						<li><a href="products.html">Products</a></li>
-						<li><a href="sales.html">Sales</a></li>
-						<li><a href="attendants.html">Attendants</a></li>
-						<li><a href="index.html">Logout</a></li>
-					</ul>
-					<input type="text" placeholder="Search...">
-				</nav>
+			</header>
+
+		<section id="create-product">
+			<div class="container">
+				<h2>New Product</h2>
+					<form action="#">
+						<input type="text" name="product-name" id="product-name" placeholder="Product Name" required>
+						<input type="number" name="price" id="price" placeholder="Price of product" required>
+						<input type="number" name="quantity" id="quantity" placeholder="Quantity" required>
+						<input type="number" name="min-quantity" id="min-quantity" placeholder="Minimum Inventory Quantity" required>
+						<select class="category" required>
+							<option>Dummy Category</option>
+							<option>Dummy Category</option>
+							<option>Dummy Category</option>
+							<option>Dummy Category</option>
+						</select>
+						<button class="button-1">Create Product</button>
+					</form>
 			</div>
-		</header>
-
-	<section id="create-product">
-		<div class="container">
-			<h2>New Product</h2>
-				<form action="#">
-					<input type="text" name="product-name" id="product-name" placeholder="Product Name" required>
-					<input type="number" name="price" id="price" placeholder="Price of product" required>
-					<input type="number" name="quantity" id="quantity" placeholder="Quantity" required>
-					<input type="number" name="min-quantity" id="min-quantity" placeholder="Minimum Inventory Quantity" required>
-					<select class="category" required>
-						<option>Dummy Category</option>
-						<option>Dummy Category</option>
-						<option>Dummy Category</option>
-						<option>Dummy Category</option>
-					</select>
-					<button class="button-1">Create Product</button>
-				</form>
-		</div>
-	</section>
-
+		</section>
+		<div class="push"></div>
+		<div class="push"></div>
+		<div class="push"></div>
+	</div>
 	<footer>
 		<p>Store Manager, copyright &copy; 2018</p>
 	</footer>

@@ -1,12 +1,20 @@
 /*Global section*/
+html {
+	height: 100%;
+  margin: 0;
+}
 body {
 	font-family: arial, helvetica, sans-serif;
 	font-size: 14px;
 	line-height: 1.5;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	background-color: #f4f4f4;
-	min-height: 100%
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	margin-bottom: -50px;
 }
 ul {
 	margin: 0;
@@ -468,7 +476,7 @@ a:active {
 	border-radius: 5px;
 	border-color: #35072C;
 	font-size: 16px;
-	min-width 10%;
+	min-width: 10%;
 	font-weight: bold;
 	margin-top: 15px;
 	text-align: center;
@@ -480,20 +488,19 @@ a:active {
 	border-radius: 5px;
 	border-color: #35072C;
 	font-size: 16px;
-	min-width 10%;
+	min-width: 10%;
 	font-weight: bold;
 	margin-top: 15px;
 	text-align: center;
 }
 
-
+.push {
+	height: 50px;
+}
 /*footer section*/
 footer {
-	padding: 20px;
+	padding: 10px;
 	background-color: #35072C;
 	color: #ffffff;
 	text-align: center;
-	position: relative;
-	bottom:0;
-	margin-top: 100px;
 }

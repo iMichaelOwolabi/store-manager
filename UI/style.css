@@ -35,9 +35,8 @@ input {
 	display: block;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
-	border: 2px inset #35072C;
 	padding: 10px;
-	font-weight: bold;
+	min-width: 30%;
 }
 select {
 	display: block;
@@ -48,6 +47,14 @@ select {
 	min-width: 42%;
 	font-weight: bold;
 }
+button {
+	background-color:#8B4513;
+	min-width: 20%;
+	cursor: pointer;
+}
+button:hover {
+	opacity: 0.8;
+}
 .attendant {
 	visibility: visible;
 	display: block;
@@ -57,7 +64,6 @@ select {
 	display: block;
 }
 .modify-btn {
-	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
 	padding: 10px;
@@ -66,7 +72,6 @@ select {
 	font-size: 16px;
 }
 .delete-btn {
-	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
 	padding: 10px;
@@ -115,26 +120,37 @@ header #logo h1 {
 #attendant {
 	margin-top: 20px;
 }
-/*Login Section*/
 
+/*Login Section*/
 #login {
 	margin: 50px auto auto auto;
 	overflow: hidden;
 	align-content: center;
 	text-align: center;
 }
-#login h2 {
+.loginBox{
+  background:white;
+	width:50%;
+  border-radius:4px;
+  margin: 0 auto 50px auto;
+  padding:0px 0px 20px 0px;
+	border: 1px solid;
+}
+#login h3 {
 	color: #35072C;
+}
+#login input {
+	width: 60%;
+	margin-bottom: 15px;
 }
 
 .button-1 { 
-	background-color: #35072C;
 	color: #ffffff;
 	padding: 10px;
 	border-radius: 5px;
 	border-color: #35072C;
 	font-size: 16px;
-	width: 150px;
+	width: 40%;
 	font-weight: bold;
 	margin: auto;
 	text-align: center;
@@ -163,7 +179,6 @@ header #logo h1 {
 	min-width: 30%;
 }
 .create-acc-btn { 
-	background-color: #8B4513;
 	color: #ffffff;
 	padding: 10px;
 	border-radius: 5px;

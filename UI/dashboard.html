@@ -29,21 +29,32 @@
 		<section id="attendant">
 			<div id="dashboard">
 				<div class="container">
-
 					<div class = "Profile">
-						<img src="./img/user.png" class="user">
+						<img src="./img/user.png" class="user">			
+						<div class="picture"><button class="profile-pic">Change Picture</button></div>
+						<div id="myModal" class="modal">
+							<!-- Modal content -->
+							<div class="modal-content">
+								New profile picture
+								<span class="close">&times;</span>
+								<input type="file" class="upload">
+								<div class="uploadDiv"><button class="uploadBtn">Upload</button></div>
+							</div>						
+						</div>
+						<p>Account Overview</p>
 					</div>
-					<p>Account Overview</p>
 					<div class="boxes">
 						<div class="box">
-							<h3>The total number of sales records:</h3>
+							<h3>Total Sales:</h3>
+							<h1><span class="figures">15</span></h1>
 						</div>
 						<div class="box">
-							<h3>The total number of sales record:</h3>
+							<h3>Number of Products Sold:</h3>
+							<h1><span class="figures">4</span></h1>
 						</div>
-
 						<div class="box">
-							<h3>The total number of sales record:</h3>
+							<h3>Total Sales Worth:</h3>
+							<h1><span class="figures">#15,000</span></h1>
 						</div>
 					</div>
 					
@@ -54,22 +65,23 @@
 		<section id="admin">
 			<div id="dashboard">
 				<div class="container">
-
 					<div class = "Profile">
 						<img src="./img/user.png" class="user">
+						<div class="picture"><button class="profile-pic">Change Picture</button></div>
+						<p>Store Activity</p>
 					</div>
-					<p>Store Activity</p>
 					<div class="boxes">
 						<div class="box">
-							<h3>Total Sales:</h3>
+							<h3>Total Store Sales:</h3>
+							<h1><span class="figures">78</span></h1>
 						</div>
-				
 						<div class="box">
 							<h3>Best Performing Product:</h3>
+							<h1><span class="figures">Vintage Bow Tie</span></h1>
 						</div>
-				
 						<div class="box">
-							<h3>Most active store attendant:</h3>
+							<h3>Most Active Store Attendant:</h3>
+							<h1><span class="figures">James</span></h1>
 						</div>
 					</div>
 
@@ -84,5 +96,6 @@
 	<footer>
 			<p>Store Manager, copyright &copy; 2018</p>
 	</footer>
+	<script src="./js/main.js"></script>
 </body>
 </html>

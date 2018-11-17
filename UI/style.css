@@ -63,21 +63,16 @@ button:hover {
 	visibility: visible;
 	display: block;
 }
-.modify-btn {
+.mod-del-btn {
 	color: #ffffff;
 	font-weight: bold;
 	padding: 10px;
-	min-width: 200px;
+	min-width: 150px;
 	border-radius: 20px;
 	font-size: 16px;
 }
-.delete-btn {
-	color: #ffffff;
-	font-weight: bold;
-	padding: 10px;
-	min-width: 200px;
-	border-radius: 20px;
-	font-size: 16px;
+#del-btn {
+	background-color: rgb(119, 18, 18);
 }
 
 /*Header Section*/
@@ -336,7 +331,6 @@ header #logo h1 {
 	min-height: 180px;
 }
 .cart-btn {
-	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
 	padding: 10px;
@@ -345,7 +339,6 @@ header #logo h1 {
 	font-size: 16px;
 }
 #all-products .details-btn {
-	background-color: #8B4513;
 	color: #ffffff;
 	font-weight: bold;
 	padding: 10px;
@@ -369,13 +362,11 @@ header #logo h1 {
 #product-details {
 	margin-top: 50px;
 }
-.product-details {
-	color: #35072C;
-}
 .product-details img {
 	min-width: 30%;
 	max-width: 40%;
 	float: left;
+	margin: auto 35px;
 }
 .product-details input {
 	width: 5px;
@@ -384,7 +375,7 @@ header #logo h1 {
 }
 #product-details .product-details .details {
 float: left;
-margin-left: 90px;
+margin-left: auto;
 }
 .product-details p {
 	font-size: 16px;
@@ -392,7 +383,9 @@ margin-left: 90px;
 .product-details h1 {
 	font-size: 30px;
 }
-
+.qty {
+	display: inline-block;
+}
 /*Sopping Cart Section*/
 #cart {
 	margin-top: 20px;

@@ -286,10 +286,8 @@ header #logo h1 {
 	min-width: 30%;
 }
 .create-acc-btn { 
-	color: #ffffff;
 	padding: 10px;
 	border-radius: 5px;
-	border-color: #35072C;
 	font-size: 16px;
 	min-width: 10%;
 	font-weight: bold;
@@ -302,6 +300,13 @@ header #logo h1 {
 	margin: 20px auto auto auto;
 	overflow: hidden;
 	align-content: center;
+}
+#all-products .create-btn {
+	padding: 5px;
+	color: #35072C;
+	background-color: #ffffff;
+	border: 3px #35072C double;
+	font-weight: bold;
 }
 
 #all-products .boxes {
@@ -537,23 +542,23 @@ a:active {
 .create-box {
 	margin: 40px;
 }
+#create-product {
+	text-align: center;
+	margin-top: 40px;
+}
 #create-product input {
 	display: block;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
 	padding: 10px;
+	width: 40%;
+}
+#create-product p {
+	font-weight: lighter;
+}
+#product-img-upload {
+	width: 30%;
 	min-width: 30%;
-}
-#create-product {
-	text-align: center;
-	margin-top: 20px;
-}
-#create-product select {
-	display: block;
-	line-height: 1.5;
-	margin: 20px auto 7px auto;
-	padding: 10px;
-	min-width: 33%;
 }
 #create-product button {
 	padding: 10px;

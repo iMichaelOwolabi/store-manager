@@ -26,21 +26,22 @@
 			</div>
 		</header>
 
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				New profile picture
+				<span class="close">&times;</span>
+				<input type="file" class="upload">
+				<div class="uploadDiv"><button class="uploadBtn">Upload</button></div>
+			</div>						
+		</div>
+
 		<section id="attendant">
 			<div id="dashboard">
 				<div class="container">
 					<div class = "Profile">
 						<img src="./img/user.png" class="user">			
-						<div class="picture"><button class="profile-pic">Change Picture</button></div>
-						<div id="myModal" class="modal">
-							<!-- Modal content -->
-							<div class="modal-content">
-								New profile picture
-								<span class="close">&times;</span>
-								<input type="file" class="upload">
-								<div class="uploadDiv"><button class="uploadBtn">Upload</button></div>
-							</div>						
-						</div>
+						<div class="picture"><button class="modal-btn">Change Picture</button></div>
 						<p>Account Overview</p>
 					</div>
 					<div class="boxes">
@@ -65,11 +66,7 @@
 		<section id="admin">
 			<div id="dashboard">
 				<div class="container">
-					<div class = "Profile">
-						<img src="./img/user.png" class="user">
-						<div class="picture"><button class="profile-pic">Change Picture</button></div>
-						<p>Store Activity</p>
-					</div>
+					<p>Store Activity</p>
 					<div class="boxes">
 						<div class="box">
 							<h3>Total Store Sales:</h3>

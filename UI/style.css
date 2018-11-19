@@ -42,12 +42,10 @@ select {
 	display: block;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
-	border: 2px inset #35072C;
 	padding: 10px;
-	min-width: 42%;
-	font-weight: bold;
 }
 button {
+	color: #ffffff;
 	background-color:#8B4513;
 	min-width: 20%;
 	cursor: pointer;
@@ -62,17 +60,6 @@ button:hover {
 .admin {
 	visibility: visible;
 	display: block;
-}
-.mod-del-btn {
-	color: #ffffff;
-	font-weight: bold;
-	padding: 10px;
-	min-width: 150px;
-	border-radius: 20px;
-	font-size: 16px;
-}
-#del-btn {
-	background-color: rgb(119, 18, 18);
 }
 
 /*Header Section*/
@@ -183,9 +170,8 @@ header #logo h1 {
 .picture{
 	width: 10%;
 }
-.profile-pic {
+#dashboard .modal-btn {
 	padding: 2px 12px;
-	color: #ffffff;
 	font-size: 10px;
 	font-weight: bold;
 	border: none;
@@ -200,7 +186,7 @@ header #logo h1 {
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Sit on top */
 	padding-top: 100px; /* Location of the box */
-	margin-top: 100px;
+	margin-top: 40px;
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -212,7 +198,7 @@ header #logo h1 {
 
 /* Modal Content */
 .modal-content {
-	background-color: #fefefe;
+	background-color: #f4f4f4;
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
@@ -222,7 +208,13 @@ header #logo h1 {
 	font-weight: bold;
 	color: #35072C;
 }
-
+#product-details .modal-content input {
+	width: 50%;
+}
+#product-details .modal-content select {
+	width: 54%;
+	padding: 7px;
+}
 /* The Close Button */
 .close {
 	color: #aaaaaa;
@@ -248,7 +240,6 @@ header #logo h1 {
 }
 .uploadBtn {
 	padding: 2px 12px;
-	color: #ffffff;
 	font-size: 10px;
 	font-weight: bold;
 	border: none;
@@ -329,6 +320,7 @@ header #logo h1 {
 	background-color: #f4f4f4;
 	color: #35072C;
 	min-height: 180px;
+	border: none;
 }
 .cart-btn {
 	color: #ffffff;
@@ -373,6 +365,7 @@ header #logo h1 {
 	margin-left: 0;
 	height: 10px;
 }
+
 #product-details .product-details .details {
 float: left;
 margin-left: auto;
@@ -385,6 +378,20 @@ margin-left: auto;
 }
 .qty {
 	display: inline-block;
+}
+.details button {
+		font-weight: bold;
+		padding: 10px;
+		min-width: 150px;
+		border-radius: 20px;
+		font-size: 16px;
+}
+.product-details .modal-content #mod-prod-upload {
+	background-color: #ffffff;
+	height: 20px;
+}
+#del-btn {
+	background-color: rgb(119, 18, 18);
 }
 /*Sopping Cart Section*/
 #cart {
@@ -534,9 +541,7 @@ a:active {
 	display: block;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
-	border: 2px inset #35072C;
 	padding: 10px;
-	font-weight: bold;
 	min-width: 30%;
 }
 #create-product {
@@ -547,17 +552,12 @@ a:active {
 	display: block;
 	line-height: 1.5;
 	margin: 20px auto 7px auto;
-	border: 2px inset #35072C;
 	padding: 10px;
-	font-weight: bold;
-	min-width: 32%;
+	min-width: 33%;
 }
 #create-product button {
-	background-color: #8B4513;
-	color: #ffffff;
 	padding: 10px;
 	border-radius: 5px;
-	border-color: #35072C;
 	font-size: 16px;
 	min-width: 10%;
 	font-weight: bold;

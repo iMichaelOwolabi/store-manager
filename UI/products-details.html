@@ -38,13 +38,43 @@
 						<p>Available Quantity: 718</p>
 						<p>Status: Available</p>
 						<div class="attendant">
-							<button class = "cart-btn">Add to Cart</button>
+							<button class="cart-btn">Add to Cart</button>
 						</div>
 						<div class="admin">
-							<button class = "mod-del-btn">Modify</button>
-							<button class = "mod-del-btn" id="del-btn">Delete</button>
+							<button class="modal-btn" id="mod-btn">Modify</button>
+							<div id="" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<span class="close">&times;</span>
+									<section id="create-product">
+										<div class="container">
+											<h2>Product Update</h2>
+												<form action="#">
+													<input type="text" name="product-name" id="" placeholder="Product Name" required>
+													<input type="number" name="price" id="price" placeholder="Price" required>
+													<input type="number" name="quantity" id="quantity" placeholder="Quantity" required>
+													<input type="number" name="min-quantity" id="min-quantity" placeholder="Minimum Inventory Quantity" required>
+													<label for="product-image">Product Image</label><input type="file" class="upload" id="mod-prod-upload">
+													<div class="uploadDiv"><button class="">Update</button></div>
+												</form>
+										</div>
+									</section>
+								</div>						
+							</div>
+							<div id="" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content">
+									<span class="close">&times;</span>
+										<div class="container">
+											<h4>Are you sure you want to delete this product</h4>
+												<form action="#">
+													<button id="del-btn">Delete</button>
+													<button id="mod-btn">Cancel</button>
+												</form>
+										</div>
 						</div>
 					</div>
+					<button class = "modal-btn" id="del-btn">Delete</button>
 				</div>
 			</div>
 		</section>
@@ -55,5 +85,6 @@
 	<footer>
 		<p>Store Manager, copyright &copy; 2018</p>
 	</footer>
+	<script src="./js/main.js"></script>
 </body>
 </html>

@@ -466,12 +466,25 @@ table {
 	border-collapse: collapse;
 	width: 100%;
 	text-align: center;
+	background-color: #35072C;
 }
 tr {
 	margin: auto;
+	border-style: solid;
+	border-color: #35072C;
+	border-width: 0px 0px 1px 0px;
+}
+tr:nth-child(even){
+	background-color: rgb(253, 237, 201);
+}
+tr:nth-child(odd){
+	background-color: #ffffff;
+}
+tr:first-child{
+	background-color: #35072C;
+	color: #ffffff;
 }
 td {
-    border: 1px solid #35072C;
     text-align: center;;
 		padding: 8px;
 		margin: auto;
@@ -480,6 +493,9 @@ th {
 	font-size: 17px;
 	padding: 8px;
 	font-weight: bold;
+}
+.no-border {
+	border: none;
 }
 #search {
 	display: inline-block;
@@ -537,6 +553,11 @@ a:active {
 	border-radius: 20px;
 	font-size: 16px;	
 	margin-bottom: 20px;
+}
+.responsive-table {
+	overflow-x:auto;
+	width: 80%;
+	margin: auto;
 }
 .create-box {
 	margin: 40px;

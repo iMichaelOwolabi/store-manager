@@ -89,7 +89,7 @@ describe('GET /api/v1/users', () => {
 
   it('should not get a user that does not exist', (done) => {
     chai.request(app)
-      .get('/api/v1/users/1247')
+      .get('/api/v1/users/98745')
       .set('x-access-token', authentication)
       .end((err, res) => {
         expect(res.status).to.equal(404);
@@ -194,7 +194,7 @@ describe('GET /api/v1/users', () => {
       role: 'role',
     };
     chai.request(app)
-      .put('/api/v1/users/0')
+      .put('/api/v1/users/2')
       .send(dummyUser)
       .set('x-access-token', '')
       .end((err, res) => {
@@ -211,7 +211,7 @@ describe('GET /api/v1/users', () => {
       role: 'admin',
     }
     chai.request(app)
-      .put('/api/v1/users/0')
+      .put('/api/v1/users/98745')
       .send(dummyUserUpdate)
       .set('x-access-token', authentication)
       .end((err, res) => {

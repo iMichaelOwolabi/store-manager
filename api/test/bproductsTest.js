@@ -89,7 +89,7 @@ describe('HTTP methods on /api/v1/products', () => {
 
   it('should not get a product that does not exist', (done) => {
     chai.request(app)
-      .get('/api/v1/products/0')
+      .get('/api/v1/products/98745')
       .set('x-access-token', authentication)
       .end((err, res) => {
         expect(res.status).to.equal(404);
@@ -176,7 +176,7 @@ describe('HTTP methods on /api/v1/products', () => {
       productName: 'Men\'s Boot',
       price: 400,
       quantity: 5,
-      productImage: 'imageURL',
+      productImage: 'https://imageurl.com.image1.jpg',
     };
     chai.request(app)
       .post('/api/v1/products')
@@ -217,10 +217,10 @@ describe('HTTP methods on /api/v1/products', () => {
       productName: 'Men\'s Boot',
       price: 400,
       quantity: 82,
-      productImage: 'imageURL',
+      productImage: 'https://imageurl.com.image1.png',
     };
     chai.request(app)
-      .put('/api/v1/products/0')
+      .put('/api/v1/products/98745')
       .send(dummyProduct)
       .set('x-access-token', authentication)
       .end((err, res) => {
@@ -237,7 +237,7 @@ describe('HTTP methods on /api/v1/products', () => {
       productName: 'Men\'s Boot',
       price: 400,
       quantity: 82,
-      productImage: 'imageURL',
+      productImage: 'https://imageurl.com.image1.png',
     };
     chai.request(app)
       .put('/api/v1/products/2')
@@ -276,7 +276,7 @@ describe('HTTP methods on /api/v1/products', () => {
 
   it('should not delete a product that does not exist', (done) => {
     chai.request(app)
-      .delete('/api/v1/products/0')
+      .delete('/api/v1/products/98745')
       .set('x-access-token', authentication)
       .end((err, res) => {
         expect(res.status).to.equal(404);

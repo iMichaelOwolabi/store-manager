@@ -111,7 +111,7 @@ describe('HTTP methods on /api/v1/sales', () => {
 
   it('should not get a sales record that does not exist', (done) => {
     chai.request(app)
-      .get('/api/v1/sales/users/0')
+      .get('/api/v1/sales/98745')
       .set('x-access-token', adminAuthentication)
       .end((err, res) => {
         expect(res.status).to.equal(404);
@@ -124,7 +124,7 @@ describe('HTTP methods on /api/v1/sales', () => {
 
   it('should get a sales record that exists', (done) => {
     chai.request(app)
-      .get('/api/v1/sales/users/1')
+      .get('/api/v1/sales/1')
       .set('x-access-token', adminAuthentication)
       .end((err, res) => {
         expect(res.status).to.equal(200);

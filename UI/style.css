@@ -31,6 +31,17 @@ ul {
 .right{
 	float: right;
 }
+.shopping-cart {
+	color: #B8860B;
+	display: inline-block;
+	font-size: 2em;
+	cursor: pointer;
+}
+.star {
+	color: rgb(194, 15, 15);
+	font-size: 16px;
+	display: none;
+}
 input {
 	display: block;
 	line-height: 1.5;

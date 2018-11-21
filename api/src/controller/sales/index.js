@@ -72,25 +72,25 @@ class SalesController {
         message: 'all fields are required',
       });
     }
-    if (!Validations.validPriceAndQuantity(productId)) {
+    if (!Validations.validQuantity(productId)) {
         return res.status(400).send({
           success: false,
           message: 'product id must be a valid whole number other than zero(0)',
         });
     }
-    if (!Validations.validPriceAndQuantity(quantity)) {
+    if (!Validations.validQuantity(quantity)) {
         return res.status(400).send({
           success: false,
           message: 'quantity must be a valid whole number other than zero(0)',
         });
     }
-    if (!Validations.validPriceAndQuantity(amount)) {
+    if (!Validations.validPrice(amount)) {
         return res.status(400).send({
           success: false,
-          message: 'amount must be a valid whole number other than zero(0)',
+          message: 'amount must be a valid positive number other than zero(0)',
         });
     }
-    if (!Validations.validPriceAndQuantity(userId)) {
+    if (!Validations.validQuantity(userId)) {
         return res.status(400).send({
           success: false,
           message: 'user id must be a valid whole number other than zero(0)',

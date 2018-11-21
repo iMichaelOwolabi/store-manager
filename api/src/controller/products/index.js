@@ -74,17 +74,23 @@ class ProductsController {
         message: 'product name must contain only valid alphanumeric characters',
       });
     }
-    if (!Validations.validPriceAndQuantity(price)) {
+    if (!Validations.validPrice(price)) {
       return res.status(400).send({
         success: false,
-        message: 'price must be a valid whole number other than zero(0)',
+        message: 'price must be a valid positive number other than zero(0)',
       });
     }
-    if (!Validations.validPriceAndQuantity(quantity)) {
+    if (!Validations.validQuantity(quantity)) {
         return res.status(400).send({
           success: false,
           message: 'quantity must be a valid whole number other than zero(0)',
         });
+    }
+    if (!Validations.validQuantity(minQty)) {
+      return res.status(400).send({
+        success: false,
+        message: 'Minimum Inventory quantity must be a valid whole number other than zero(0)',
+      });
     }
     if (!Validations.validImageUrl(productImage)) {
       return res.status(400).send({
@@ -160,17 +166,23 @@ class ProductsController {
         message: 'product name must contain only valid alphanumeric characters',
       });
     }
-    if (!Validations.validPriceAndQuantity(price)) {
+    if (!Validations.validPrice(price)) {
       return res.status(400).send({
         success: false,
-        message: 'price must be a valid whole number other than zero(0)',
+        message: 'price must be a valid positive number other than zero(0)',
       });
     }
-    if (!Validations.validPriceAndQuantity(quantity)) {
+    if (!Validations.validQuantity(quantity)) {
         return res.status(400).send({
           success: false,
           message: 'quantity must be a valid whole number other than zero(0)',
         });
+    }
+    if (!Validations.validQuantity(minQty)) {
+      return res.status(400).send({
+        success: false,
+        message: 'Minimum Inventory quantity must be a valid whole number other than zero(0)',
+      });
     }
     if (!Validations.validImageUrl(productImage)) {
       return res.status(400).send({

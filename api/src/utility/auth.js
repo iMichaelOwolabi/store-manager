@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import db from './dbQuery';
 
 class Auth {
-  static async verifyToken (req, res, next) {
+  static async verifyToken(req, res, next) {
     const token = req.headers['x-access-token'];
     if(!token) {
       return res.status(401).send({
@@ -13,16 +13,16 @@ class Auth {
     try{
       const decoded = await jwt.verify(token, process.env.SECRET);
       req.decoded = decoded;
-      const text = 'SELECT * FROM users WHERE id = $1';
+      const text = 'SELECT * FROM users WHERE userid = $1';
       const { rows } = await db.query(text, [decoded.id]);
       if(!rows[0]) {
         return res.status(401).send({
           success: false,
-          message: 'Unauthorized User',
+          message: 'Unauthorized User4',
         });
       }
       req.user = { id: decoded.id };
-      next();
+      return next();
     }
     catch(error) {
       return res.status(400).send(error);
@@ -33,9 +33,8 @@ class Auth {
     const token = req.headers['x-access-token'];
     try{
       const decoded = await jwt.verify(token, process.env.SECRET);
-      const text = 'SELECT * FROM users WHERE id = $1';
+      const text = 'SELECT * FROM users WHERE userid = $1';
       const { rows } = await db.query(text, [decoded.id]);
-      console.log(rows[0].role);
       if(rows[0].role === "superadmin" || rows[0].role === "admin") {
         return next();
       }
@@ -56,7 +55,7 @@ class Auth {
     const token = req.headers['x-access-token'];
     try{
       const decoded = await jwt.verify(token, process.env.SECRET);
-      const text = 'SELECT * FROM users WHERE id = $1';
+      const text = 'SELECT * FROM users WHERE userid = $1';
       const { rows } = await db.query(text, [decoded.id]);
       if(rows[0].role !== 'user') {
         return res.status(401).send({
@@ -75,7 +74,7 @@ class Auth {
     const token = req.headers['x-access-token'];
     try{
       const decoded = await jwt.verify(token, process.env.SECRET);
-      const text = 'SELECT * FROM users WHERE id = $1';
+      const text = 'SELECT * FROM users WHERE userid = $1';
       const { rows } = await db.query(text, [decoded.id]);
       if(rows[0].role !== 'user' || rows[0].role !== 'admin' || rows[0].role !== 'superadmin') {
         return res.status(401).send({

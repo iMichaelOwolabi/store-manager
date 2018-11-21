@@ -5,7 +5,7 @@ class SalesController {
   // get all sales record
   static async getAllSales (req, res) {
 
-    const salesQuery = 'SELECT sales.salesid, products.productname, sales.quantity, amount, products.productimage, userid FROM sales INNER JOIN products ON sales.productid=products.productid';
+    const salesQuery = 'SELECT sales.salesid, products.productname, sales.quantity, amount, products.productimage, userid, sales.salesdate FROM sales INNER JOIN products ON sales.productid=products.productid';
     try{
       const { rows } = await db.query(salesQuery);
       return res.status(200).send({
@@ -33,7 +33,7 @@ class SalesController {
           message: 'sales id must be a valid whole number other than zero(0)',
         });
     }
-    const salesQuery = 'SELECT sales.salesid, products.productname, sales.quantity, amount, products.productimage, userid FROM sales INNER JOIN products ON sales.productid=products.productid WHERE sales.salesid = $1';
+    const salesQuery = 'SELECT sales.salesid, products.productname, sales.quantity, amount, products.productimage, userid, sales.salesdate FROM sales INNER JOIN products ON sales.productid=products.productid WHERE sales.salesid = $1';
     try{
       const { rows } = await db.query(salesQuery, [salesId]);
       if(!rows[0]){

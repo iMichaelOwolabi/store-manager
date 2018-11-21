@@ -54,7 +54,7 @@ class UsersController {
 
     const userQuery = 'INSERT INTO users(username,password,role) VALUES ($1, $2, $3) RETURNING *';
     const hashedPassword = bcrypt.hashSync(password, 10);
-    const values = [username, hashedPassword, role];
+    const values = [username, hashedPassword, 'user'];
     try{
         const { rows } = await db.query(userQuery, values);
           return res.status(201).json({
@@ -96,7 +96,7 @@ class UsersController {
           message: 'Incorrect credentials',
         });
       };
-      const token = Helper.generateToken(rows[0].id);
+      const token = Helper.generateToken(rows[0].userid);
       return res.status(200).send({ 
         success: true,
         message: 'You are welcome to the store manager',
@@ -138,7 +138,7 @@ class UsersController {
       });
     }
 
-    const userQuery = 'SELECT * FROM users WHERE id = $1';
+    const userQuery = 'SELECT * FROM users WHERE userid = $1';
     try{
       const { rows } = await db.query(userQuery, [id]);
       if (!rows[0]) {
@@ -174,8 +174,8 @@ class UsersController {
       });
     }
 
-    const findUser = 'SELECT * FROM users WHERE id=$1';
-    const updateQuery = 'UPDATE users SET role=$1 WHERE id=$2 RETURNING *';
+    const findUser = 'SELECT * FROM users WHERE userid=$1';
+    const updateQuery = 'UPDATE users SET role=$1 WHERE userid=$2 RETURNING *';
 
     try{
       const { rows } = await db.query(findUser, [id]);

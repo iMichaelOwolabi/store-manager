@@ -7,21 +7,6 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-/*
-pgtools.createdb({
-  database: 'sm',
-  user: 'postgres',
-  password: 'store-admin1',
-  port: '5432',
-}, 'testdb', (err, res) => {
-  if (err) {
-    console.error(err);
-    process.exit(-1);
-  }
-  console.log(res);
-});
-*/
-
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
@@ -33,39 +18,40 @@ pool.on('connect', () => {
 const createUsersTable = () => {
   const createTable = `CREATE TABLE IF NOT EXISTS
     users(
-      id SERIAL PRIMARY KEY,
+      userid SERIAL PRIMARY KEY,
       username VARCHAR(128) NOT NULL,
-      password VARCHAR(128) NOT NULL,
-      role VARCHAR(128) NOT NULL
+      password VARCHAR(250) NOT NULL,
+      role VARCHAR(30) NOT NULL
     )`;
   pool.query(createTable)
     .then((res) => {
       console.log(res);
-      pool.end();
+      // pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
+      // pool.end();
     });
 };
 
 const createProductsTable = () => {
   const createTable = `CREATE TABLE IF NOT EXISTS
   products(
-    id SERIAL PRIMARY KEY,
-    productName VARCHAR(128) NOT NULL,
-    price VARCHAR(128) NOT NULL,
-    quantity VARCHAR(128) NOT NULL,
-    productImage VARCHAR(128) NOT NULL
+    productid SERIAL PRIMARY KEY,
+    productName VARCHAR(250) NOT NULL,
+    price NUMERIC NOT NULL,
+    quantity INTEGER NOT NULL,
+    mininventoryqty INTEGER NOT NULL,
+    productImage VARCHAR(200) NOT NULL
   )`;
   pool.query(createTable)
     .then((res) => {
       console.log(res);
-      pool.end();
+      // pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
+      // pool.end();
     });
 };
 
@@ -73,54 +59,55 @@ const createProductsTable = () => {
 const createSalesTable = () => {
   const createTable = `CREATE TABLE IF NOT EXISTS
   sales(
-    id SERIAL PRIMARY KEY,
+    salesid SERIAL PRIMARY KEY,
     productid INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
-    amount INTEGER NOT NULL,
+    amount NUMERIC NOT NULL,
     userid INTEGER NOT NULL,
-    FOREIGN KEY (userId) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (productId) REFERENCES products (id) ON DELETE CASCADE
+    salesdate TIMESTAMPTZ DEFAULT Now(),
+    FOREIGN KEY (userId) REFERENCES users (userid) ON DELETE CASCADE,
+    FOREIGN KEY (productId) REFERENCES products (productid) ON DELETE CASCADE
   )`;
   pool.query(createTable)
     .then((res) => {
       console.log(res);
-      pool.end();
+      // pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
+      // pool.end();
     });
 };
 
 
 const dropUsersTable = () => {
-  const dropTable = 'DROP TABLE IF EXISTS';
+  const dropTable = 'DROP TABLE users CASCADE';
   pool.query(dropTable)
     .then((res) => {
       console.log(res);
-      pool.end();
+      // pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
+      // pool.end();
     });
 };
 
 const dropProductsTable = () => {
-  const dropTable = 'DROP TABLE IF EXISTS';
+  const dropTable = 'DROP TABLE products CASCADE';
   pool.query(dropTable)
     .then((res) => {
       console.log(res);
-      pool.end();
+      // pool.end();
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
+      // pool.end();
     });
 };
 
 const dropSalesTable = () => {
-  const dropTable = 'DROP TABLE IF EXISTS';
+  const dropTable = 'DROP TABLE sales CASCADE';
   pool.query(dropTable)
     .then((res) => {
       console.log(res);
@@ -128,7 +115,7 @@ const dropSalesTable = () => {
     })
     .catch((err) => {
       console.log(err);
-      pool.end();
+      // pool.end();
     });
 };
 
@@ -146,7 +133,7 @@ const insertUser = () => {
   pool.query(adminUserQuery, values)
     .then((res) => {
       console.log(res);
-      pool.end();
+      // pool.end();
     })
     .catch((err) => {
       console.log(err);
@@ -160,10 +147,10 @@ const dropAllTables = () => {
   dropSalesTable();
 };
 
-pool.on('remove', () => {
+/* pool.on('remove', () => {
   console.log('client removed');
   process.exit(0);
-});
+}); */
 
 module.exports = {
   createUsersTable,

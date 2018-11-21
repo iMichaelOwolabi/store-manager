@@ -5,7 +5,7 @@ class SalesController {
   // get all sales record
   static async getAllSales (req, res) {
 
-    const salesQuery = 'SELECT sales.id, products.productname, sales.quantity, amount, products.productimage, userid FROM sales INNER JOIN products ON sales.productid=products.id';
+    const salesQuery = 'SELECT sales.salesid, products.productname, sales.quantity, amount, products.productimage, userid, sales.salesdate FROM sales INNER JOIN products ON sales.productid=products.productid';
     try{
       const { rows } = await db.query(salesQuery);
       return res.status(200).send({
@@ -33,7 +33,7 @@ class SalesController {
           message: 'sales id must be a valid whole number other than zero(0)',
         });
     }
-    const salesQuery = 'SELECT sales.id, products.productname, sales.quantity, amount, products.productimage, userid FROM sales INNER JOIN products ON sales.productid=products.id WHERE sales.id = $1';
+    const salesQuery = 'SELECT sales.salesid, products.productname, sales.quantity, amount, products.productimage, userid, sales.salesdate FROM sales INNER JOIN products ON sales.productid=products.productid WHERE sales.salesid = $1';
     try{
       const { rows } = await db.query(salesQuery, [salesId]);
       if(!rows[0]){
@@ -72,32 +72,32 @@ class SalesController {
         message: 'all fields are required',
       });
     }
-    if (!Validations.validPriceAndQuantity(productId)) {
+    if (!Validations.validQuantity(productId)) {
         return res.status(400).send({
           success: false,
           message: 'product id must be a valid whole number other than zero(0)',
         });
     }
-    if (!Validations.validPriceAndQuantity(quantity)) {
+    if (!Validations.validQuantity(quantity)) {
         return res.status(400).send({
           success: false,
           message: 'quantity must be a valid whole number other than zero(0)',
         });
     }
-    if (!Validations.validPriceAndQuantity(amount)) {
+    if (!Validations.validPrice(amount)) {
         return res.status(400).send({
           success: false,
-          message: 'amount must be a valid whole number other than zero(0)',
+          message: 'amount must be a valid positive number other than zero(0)',
         });
     }
-    if (!Validations.validPriceAndQuantity(userId)) {
+    if (!Validations.validQuantity(userId)) {
         return res.status(400).send({
           success: false,
           message: 'user id must be a valid whole number other than zero(0)',
         });
     }
 
-    const findUser = 'SELECT * FROM users WHERE id=$1';
+    const findUser = 'SELECT * FROM users WHERE userid=$1';
     try{
       const { rows } = await db.query(findUser, [userId]);
       if(!rows[0]){
@@ -114,7 +114,7 @@ class SalesController {
         error,
       });
     }
-    const findProduct = 'SELECT * FROM products WHERE id=$1';
+    const findProduct = 'SELECT * FROM products WHERE productid=$1';
     try{
       const { rows } = await db.query(findProduct, [productId]);
       if(!rows[0]){

@@ -1,29 +1,31 @@
 CREATE TABLE IF NOT EXISTS
     users(
-      id SERIAL PRIMARY KEY,
+      userid SERIAL PRIMARY KEY,
       username VARCHAR(128) NOT NULL,
-      password VARCHAR(128) NOT NULL,
-      role VARCHAR(128) NOT NULL
+      password VARCHAR(250) NOT NULL,
+      role VARCHAR(30) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS
   products(
-    id SERIAL PRIMARY KEY,
-    productName VARCHAR(128) NOT NULL,
-    price INTEGER NOT NULL,
+    productid SERIAL PRIMARY KEY,
+    productName VARCHAR(250) NOT NULL,
+    price NUMERIC NOT NULL,
     quantity INTEGER NOT NULL,
-    productImage VARCHAR(128) NOT NULL
+    mininventoryqty INTEGER NOT NULL,
+    productImage VARCHAR(200) NOT NULL
   );
 
 CREATE TABLE IF NOT EXISTS
   sales(
-    id SERIAL PRIMARY KEY,
+    salesid SERIAL PRIMARY KEY,
     productid INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
-    amount INTEGER NOT NULL,
+    amount NUMERIC NOT NULL,
     userid INTEGER NOT NULL,
-    FOREIGN KEY (userId) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (productId) REFERENCES products (id) ON DELETE CASCADE
+    salesdate TIMESTAMPTZ DEFAULT Now(),
+    FOREIGN KEY (userId) REFERENCES users (userid) ON DELETE CASCADE,
+    FOREIGN KEY (productId) REFERENCES products (productid) ON DELETE CASCADE
   );
 
   INSERT INTO users(username,password,role) VALUES ('admin', '$2b$10$l7A2ezWuxldzri4fMiwDbeJGNNQqf5aaWlMUV4mGlmezRrHg0Y/ZG', 'superadmin');

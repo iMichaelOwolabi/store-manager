@@ -24,7 +24,7 @@ class ProductsController {
   // get a single product
   static async getOneProduct(req, res) {
     const { id } = req.params;
-    const productsQuery = 'SELECT * FROM products WHERE id = $1';
+    const productsQuery = 'SELECT * FROM products WHERE productid = $1';
 
     if (!Validations.validNumber(id)) {
       return res.status(400).send({
@@ -59,10 +59,10 @@ class ProductsController {
   // create a product
   static async postProduct(req, res) {
     const {
-      productName, price, quantity, productImage
+      productName, price, quantity, minQty, productImage
     } = req.body; 
 
-    if (!productName || !price || !quantity || !productImage){
+    if (!productName || !price || !quantity || !minQty || !productImage){
       return res.status(400).send({
         success: false,
         message: 'all fields are required',
@@ -74,17 +74,23 @@ class ProductsController {
         message: 'product name must contain only valid alphanumeric characters',
       });
     }
-    if (!Validations.validPriceAndQuantity(price)) {
+    if (!Validations.validPrice(price)) {
       return res.status(400).send({
         success: false,
-        message: 'price must be a valid whole number other than zero(0)',
+        message: 'price must be a valid positive number other than zero(0)',
       });
     }
-    if (!Validations.validPriceAndQuantity(quantity)) {
+    if (!Validations.validQuantity(quantity)) {
         return res.status(400).send({
           success: false,
           message: 'quantity must be a valid whole number other than zero(0)',
         });
+    }
+    if (!Validations.validQuantity(minQty)) {
+      return res.status(400).send({
+        success: false,
+        message: 'Minimum Inventory quantity must be a valid whole number other than zero(0)',
+      });
     }
     if (!Validations.validImageUrl(productImage)) {
       return res.status(400).send({
@@ -110,8 +116,8 @@ class ProductsController {
         error,
       });
     }
-    const productsQuery = 'INSERT INTO products(productname,price,quantity,productimage) VALUES ($1, $2, $3, $4) RETURNING *';
-    const values = [productName, price, quantity, productImage];
+    const productsQuery = 'INSERT INTO products(productname,price,quantity,mininventoryqty,productimage) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    const values = [productName, price, quantity, minQty, productImage];
     
     try{
       const { rows } = await db.query(productsQuery, values);
@@ -138,6 +144,7 @@ class ProductsController {
       productName,
       price,
       quantity,
+      minQty,
       productImage,
     } = req.body;
 
@@ -147,7 +154,7 @@ class ProductsController {
         message: 'id must be a valid whole number other than zero(0)',
       });
     }
-    if (!productName || !price || !quantity || !productImage){
+    if (!productName || !price || !quantity || !minQty || !productImage){
       return res.status(400).send({
         success: false,
         message: 'all fields are required',
@@ -159,17 +166,23 @@ class ProductsController {
         message: 'product name must contain only valid alphanumeric characters',
       });
     }
-    if (!Validations.validPriceAndQuantity(price)) {
+    if (!Validations.validPrice(price)) {
       return res.status(400).send({
         success: false,
-        message: 'price must be a valid whole number other than zero(0)',
+        message: 'price must be a valid positive number other than zero(0)',
       });
     }
-    if (!Validations.validPriceAndQuantity(quantity)) {
+    if (!Validations.validQuantity(quantity)) {
         return res.status(400).send({
           success: false,
           message: 'quantity must be a valid whole number other than zero(0)',
         });
+    }
+    if (!Validations.validQuantity(minQty)) {
+      return res.status(400).send({
+        success: false,
+        message: 'Minimum Inventory quantity must be a valid whole number other than zero(0)',
+      });
     }
     if (!Validations.validImageUrl(productImage)) {
       return res.status(400).send({
@@ -178,8 +191,8 @@ class ProductsController {
       });
     }
 
-    const findProduct = 'SELECT * FROM products WHERE id = $1';
-    const productsQuery = 'UPDATE products SET productname=$1, price=$2, quantity=$3, productimage=$4 WHERE id=$5 RETURNING *';
+    const findProduct = 'SELECT * FROM products WHERE productid = $1';
+    const productsQuery = 'UPDATE products SET productname=$1, price=$2, quantity=$3, mininventoryqty=$4, productimage=$5 WHERE productid=$6 RETURNING *';
 
     try{
       const { rows } = await db.query(findProduct, [id]);
@@ -189,7 +202,7 @@ class ProductsController {
           message: 'product not found',
         });
       }
-      const values = [productName, price, quantity, productImage, id];
+      const values = [productName, price, quantity, minQty, productImage, id];
       const prodcts = await db.query(productsQuery, values);
       return res.status(200).send({
         success: true,
@@ -209,7 +222,7 @@ class ProductsController {
   // delete a product
   static async deleteProduct(req, res) {
     const { id } = req.params;
-    const findProduct = 'SELECT * FROM products WHERE id = $1';
+    const findProduct = 'SELECT * FROM products WHERE productid = $1';
 
     if (!Validations.validNumber(id)) {
       return res.status(400).send({
@@ -226,7 +239,7 @@ class ProductsController {
           message: 'product not found',
         });
       }
-    const productsQuery = 'DELETE FROM products WHERE id=$1';
+    const productsQuery = 'DELETE FROM products WHERE productid=$1';
       const { rows } = await db.query(productsQuery, [id]);
       return res.status(200).send({
         success: true,

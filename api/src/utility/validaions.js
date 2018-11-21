@@ -8,11 +8,23 @@ class Validations {
     return true;
   }
 
-  static validPriceAndQuantity(input) {
+  static validQuantity(input) {
     if (typeof input !== 'number') {
       return false;
     }
     const validInput = /^[1-9]\d*$/;
+    const validate = validInput.test(input);
+    if (!validate) {
+      return false;
+    }
+    return true;
+  }
+
+  static validPrice(input) {
+    if (typeof input !== 'number') {
+      return false;
+    }
+    const validInput = /^[1-9]\d*(\.\d*)?$/;
     const validate = validInput.test(input);
     if (!validate) {
       return false;

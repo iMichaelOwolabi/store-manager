@@ -13,10 +13,11 @@ db.on('connect', () => {
 
 const createProductsTable = `CREATE TABLE IF NOT EXISTS
     products(
-      id SERIAL PRIMARY KEY,
-      productName VARCHAR(128) NOT NULL,
-      price INTEGER NOT NULL,
+      productid SERIAL PRIMARY KEY,
+      productName VARCHAR(250) NOT NULL,
+      price NUMERIC NOT NULL,
       quantity INTEGER NOT NULL,
+      mininventoryqty INTEGER NOT NULL,
       productImage VARCHAR(200) NOT NULL
     )`;
 db.query(createProductsTable)
@@ -31,10 +32,10 @@ db.query(createProductsTable)
 
 const createUsersTable = `CREATE TABLE IF NOT EXISTS
       users(
-        id SERIAL PRIMARY KEY,
-        username VARCHAR(30) NOT NULL,
-        password VARCHAR(300) NOT NULL,
-        role VARCHAR(15) NOT NULL
+        userid SERIAL PRIMARY KEY,
+        username VARCHAR(128) NOT NULL,
+        password VARCHAR(250) NOT NULL,
+        role VARCHAR(30) NOT NULL
       )`;
 db.query(createUsersTable)
   .then((res) => {

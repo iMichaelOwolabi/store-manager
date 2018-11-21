@@ -14,13 +14,14 @@ db.on('connect', () => {
 
 const createSalesTable = `CREATE TABLE IF NOT EXISTS
   sales(
-    id SERIAL PRIMARY KEY,
+    salesid SERIAL PRIMARY KEY,
     productid INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
-    amount INTEGER NOT NULL,
+    amount NUMERIC NOT NULL,
     userid INTEGER NOT NULL,
-    FOREIGN KEY (productId) REFERENCES products (id),
-    FOREIGN KEY (userId) REFERENCES users (id)
+    salesdate TIMESTAMPTZ DEFAULT Now(),
+    FOREIGN KEY (userId) REFERENCES users (userid) ON DELETE CASCADE,
+    FOREIGN KEY (productId) REFERENCES products (productid) ON DELETE CASCADE
   )`;
 db.query(createSalesTable)
   .then((res) => {

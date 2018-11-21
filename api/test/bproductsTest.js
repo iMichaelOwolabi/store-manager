@@ -174,8 +174,9 @@ describe('HTTP methods on /api/v1/products', () => {
   it('should successfully create a product with the right access and credentials', (done) => {
     dummyProduct = {
       productName: 'Men\'s Boot',
-      price: 400,
+      price: 40.23,
       quantity: 5,
+      minQty: 1,
       productImage: 'https://imageurl.com.image1.jpg',
     };
     chai.request(app)
@@ -215,8 +216,9 @@ describe('HTTP methods on /api/v1/products', () => {
   it('should not update a product that does not exit', (done) => {
     dummyProduct = {
       productName: 'Men\'s Boot',
-      price: 400,
+      price: 40.23,
       quantity: 82,
+      minQty: 1,
       productImage: 'https://imageurl.com.image1.png',
     };
     chai.request(app)
@@ -235,8 +237,9 @@ describe('HTTP methods on /api/v1/products', () => {
   it('should update an existing product with the right authorization and credentials', (done) => {
     dummyProduct = {
       productName: 'Men\'s Boot',
-      price: 400,
+      price: 41.58,
       quantity: 82,
+      minQty: 1,
       productImage: 'https://imageurl.com.image1.png',
     };
     chai.request(app)

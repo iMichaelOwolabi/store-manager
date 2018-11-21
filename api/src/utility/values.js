@@ -27,8 +27,8 @@ db.query(userQuery, values)
     // pool.end();
   });
 
-const productsQuery = 'INSERT INTO products(productname,price,quantity,productimage) VALUES ($1, $2, $3, $4)';
-values = ['Vintage Bow Tie', 300, 7, 'imageUrl'];
+const productsQuery = 'INSERT INTO products(productname,price,quantity,mininventoryqty,productimage) VALUES ($1, $2, $3, $4, $5)';
+values = ['Vintage Bow Tie', 300.21, 7, 1, 'https://imageurl.com/image1.png'];
 db.query(productsQuery, values)
   .then((res) => {
     console.log(res);

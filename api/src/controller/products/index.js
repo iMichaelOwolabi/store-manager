@@ -180,7 +180,7 @@ class ProductsController {
     }
 
     const findProduct = 'SELECT * FROM products WHERE productid = $1';
-    const productsQuery = 'UPDATE products SET productname=$1, price=$2, quantity=$3, mininventoryqty=$4 productimage=$5 WHERE productid=$6 RETURNING *';
+    const productsQuery = 'UPDATE products SET productname=$1, price=$2, quantity=$3, mininventoryqty=$4, productimage=$5 WHERE productid=$6 RETURNING *';
 
     try{
       const { rows } = await db.query(findProduct, [id]);

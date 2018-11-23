@@ -100,7 +100,10 @@ class UsersController {
       return res.status(200).send({ 
         success: true,
         message: 'You are welcome to the store manager',
-        token
+        data: {
+          rows,
+          token,
+        }
        });
     }
     catch(error) {

@@ -1,10 +1,12 @@
+import dotenv from 'dotenv';
+import cloudinary from 'cloudinary';
 import db from  '../../utility/dbQuery';
 import Validations from  '../../utility/validaions';
 
 class ProductsController {
   // get all products
   static async getAllProducts(req, res) {
-    const productsQuery = 'SELECT * FROM products';
+    const productsQuery = 'SELECT * FROM products ORDER BY productid';
     try{
       const { rows } = await db.query(productsQuery);
         return res.status(200).json({
@@ -92,12 +94,6 @@ class ProductsController {
         message: 'Minimum Inventory quantity must be a valid whole number other than zero(0)',
       });
     }
-    if (!Validations.validImageUrl(productImage)) {
-      return res.status(400).send({
-        success: false,
-        message: 'product image must be a valid url with the extension of jpeg, jpg, png, gif or svg',
-      });
-    }
 
     const findProduct = 'SELECT * FROM products WHERE productname=$1';
     try{
@@ -116,8 +112,22 @@ class ProductsController {
         error,
       });
     }
+
+    let theImageUrl;
+    try {
+    const image = await cloudinary.v2.uploader.upload(`${productImage}`,{tags:'sm-product'});
+      console.log("* "+image.public_id);
+      console.log("* "+image.url);
+      theImageUrl = image.url;
+    }
+    catch(err) {
+      console.log();
+      console.log("** File Upload (Promise)");
+      if (err){ console.warn(err);}
+    };
+
     const productsQuery = 'INSERT INTO products(productname,price,quantity,mininventoryqty,productimage) VALUES ($1, $2, $3, $4, $5) RETURNING *';
-    const values = [productName, price, quantity, minQty, productImage];
+    const values = [productName, price, quantity, minQty, theImageUrl];
     
     try{
       const { rows } = await db.query(productsQuery, values);
@@ -184,12 +194,6 @@ class ProductsController {
         message: 'Minimum Inventory quantity must be a valid whole number other than zero(0)',
       });
     }
-    if (!Validations.validImageUrl(productImage)) {
-      return res.status(400).send({
-        success: false,
-        message: 'product image must be a valid url with the extension of jpeg, jpg, png, gif or svg',
-      });
-    }
 
     const findProduct = 'SELECT * FROM products WHERE productid = $1';
     const productsQuery = 'UPDATE products SET productname=$1, price=$2, quantity=$3, mininventoryqty=$4, productimage=$5 WHERE productid=$6 RETURNING *';
@@ -202,7 +206,38 @@ class ProductsController {
           message: 'product not found',
         });
       }
-      const values = [productName, price, quantity, minQty, productImage, id];
+
+      const findProductByName = 'SELECT * FROM products WHERE productname=$1 AND productid!=$2';
+      try{
+        const { rows } = await db.query(findProductByName, [productName, id]);
+        if(rows[0]){
+          return res.status(400).send({
+            success: false,
+            message: 'product with that name already exist',
+          });
+        }
+      }
+      catch(error){
+        return res.status(400).send({
+          success: false,
+          message: 'Kindly check the supplied values and try again',
+        });
+      }
+      
+      let theImageUrl;
+      try {
+      const image = await cloudinary.v2.uploader.upload(`${productImage}`,{tags:'sm-product'});
+        console.log("* "+image.public_id);
+        console.log("* "+image.url);
+        theImageUrl = image.url;
+      }
+      catch(err) {
+        console.log();
+        console.log("** File Upload (Promise)");
+        if (err){ console.warn(err);}
+      };
+
+      const values = [productName, price, quantity, minQty, theImageUrl, id];
       const prodcts = await db.query(productsQuery, values);
       return res.status(200).send({
         success: true,
